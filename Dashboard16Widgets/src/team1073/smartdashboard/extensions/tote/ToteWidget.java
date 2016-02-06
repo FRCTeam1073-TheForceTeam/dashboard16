@@ -267,8 +267,8 @@ public class ToteWidget extends StaticWidget {
     private void drawContainer(int y, Color c1, Color c2, Graphics2D g2) {
         
         Dimension size = getSize();
-        double xTotal = (int)size.getWidth();
-        double yTotal = (int)size.getHeight();
+        double xTotal = size.getWidth();
+        double yTotal = size.getHeight();
         
         //containerTop
         int[] xs1 = new int[4];

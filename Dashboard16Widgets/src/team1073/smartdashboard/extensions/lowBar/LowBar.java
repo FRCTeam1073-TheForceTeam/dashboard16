@@ -74,32 +74,58 @@ public class LowBar extends StaticWidget {
         double y = 80.0;
         
         Dimension size = getSize();
-        double xtotal = (int)size.getWidth();
-        double ytotal = (int)size.getHeight();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
         
-        Color c1 = new Color(148, 148, 148);    // platform outline
-        Color c2 = new Color(177, 177, 177);    // platform fill
-        Color c3 = new Color(31, 31, 31);       // flap outline
-        Color c4 = new Color(54, 54, 54);       // flap fill
+        Color c1 = new Color(169, 169, 169);    // platform fill
+        Color c2 = new Color(126, 126, 126);    // platform outline
+        Color c3 = new Color(136, 141, 151);    // pole fill
+        Color c4 = new Color(89, 94, 101);      // pole outline
+        Color c5 = new Color(35, 35, 35);       // flap fill
+        Color c6 = new Color(28, 28, 28);       // flap top
+        Color c7 = new Color(71, 71, 71);       // flap line
         
         // 50" * 3"
         Rectangle platform = new Rectangle(0, (int)(ytotal * (68.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (12.0/y)));
-        Rectangle leftpole = new Rectangle((int)(xtotal * (8.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (68.0/y)));
-        Rectangle rightpole = new Rectangle((int)(xtotal * (180.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (68.0/y)));
-        Rectangle pole = new Rectangle((int)(xtotal * (8.0/x)), 0, (int)(xtotal * (184.0/x)), (int)(ytotal * (4.0/y)));
+        Rectangle leftpole = new Rectangle((int)(xtotal * (4.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (68.0/y)));
+        Rectangle rightpole = new Rectangle((int)(xtotal * (192.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (68.0/y)));
+        Rectangle flap = new Rectangle((int)(xtotal * (12.0/x)), 0, (int)(xtotal * (176.0/x)), (int)(ytotal * (62.0/y)));
+        Rectangle flaptop = new Rectangle((int)(xtotal * (12.0/x)), 0, (int)(xtotal * (176.0/x)), (int)(ytotal * (12.0/y)));
+
         
-        g2.setColor(c2);
-        g2.fill(platform);
-        g2.fill(leftpole);
-        g2.fill(rightpole);
-        g2.fill(pole);
+        int[] xs1 = {(int)(xtotal * (4.0/x)), (int)(xtotal * (196.0/x)), (int)(xtotal * (192.0/x)), (int)(xtotal * (8.0/x))};
+        int[] ys1 = {0, 0, (int)(ytotal * (4.0/y)), (int)(ytotal * (4.0/y))};
+        Polygon bar = new Polygon(xs1, ys1, 4);
         
         g2.setColor(c1);
+        g2.fill(platform);
+        g2.setColor(c2);
         g2.draw(platform);
-        g2.draw(leftpole);
-        g2.draw(rightpole);
-        g2.draw(pole);
         
+        g2.setColor(c3);
+        g2.fill(leftpole);
+        g2.fill(rightpole);
+        
+        g2.setColor(c4);
+        g2.draw(rightpole);
+        g2.draw(leftpole);
+        
+        g2.setColor(c3);
+        g2.fill(bar);
+        
+        g2.setColor(c4);
+        g2.draw(bar);
+        
+        g2.setColor(c5);
+        g2.fill(flap);
+        
+        g2.setColor(c6);
+        g2.fill(flaptop);
+        
+        g2.setColor(c7);
+        g2.drawLine((int)(xtotal * (12.0/x)), (int)(ytotal * (54.0/y)), (int)(xtotal * (186.0/x)), (int)(ytotal * (54.0/y)));
+        g2.drawLine((int)(xtotal * (12.0/x)), (int)(ytotal * (46.0/y)), (int)(xtotal * (186.0/x)), (int)(ytotal * (46.0/y)));
+
     }
     
     public void getHealth(double health, Graphics2D g2) {
