@@ -62,7 +62,7 @@ public class Battery extends StaticWidget {
         //establish default colors
         Color c1 = new Color(255, 255, 255);    //a color
         
-        drawBattery(0.0, g2);
+        drawBattery(0.5, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -79,18 +79,28 @@ public class Battery extends StaticWidget {
         
         Color c1 = new Color(255, 255, 255);
         Color c2 = new Color(83, 255, 47);
+        Color c3 = new Color(243, 23, 18);
         
-        RoundRectangle2D.Double outline1 = new RoundRectangle2D.Double(0, 0, (int)(xtotal * (185.0/x)), (int)(ytotal * (100.0/y)), (int)(xtotal * (10.0/x)), (int)(ytotal * (10.0/y)));
-        RoundRectangle2D.Double outline2 = new RoundRectangle2D.Double((int)(xtotal * (1.0/x)), (int)(ytotal * (1.0/y)), (int)(xtotal * (183.0/x)), (int)(ytotal * (98.0/y)), (int)(xtotal * (8.0/x)), (int)(ytotal * (8.0/y)));
-        RoundRectangle2D.Double outline3 = new RoundRectangle2D.Double((int)(xtotal * (2.0/x)), (int)(ytotal * (2.0/y)), (int)(xtotal * (181.0/x)), (int)(ytotal * (96.0/y)), (int)(xtotal * (6.0/x)), (int)(ytotal * (6.0/y)));
-        RoundRectangle2D.Double outline4 = new RoundRectangle2D.Double((int)(xtotal * (3.0/x)), (int)(ytotal * (3.0/y)), (int)(xtotal * (179.0/x)), (int)(ytotal * (94.0/y)), (int)(xtotal * (4.0/x)), (int)(ytotal * (4.0/y)));
+        Rectangle percentbattery = new Rectangle((int)(xtotal * (2.0/x)), (int)(ytotal * (2.0/y)), (int)(percentPower * (xtotal * (186.0/x))), (int)(ytotal * (96.0/y)));
         
-        Rectangle percentbattery = new Rectangle((int)(xtotal * (2.0/x)), (int)(ytotal * (2.0/y)), (int)(xtotal * (181.0/x)), (int)(ytotal * (96.0/y)));
+        RoundRectangle2D.Double outline1 = new RoundRectangle2D.Double(0, 0, (int)(xtotal * (190.0/x)), (int)(ytotal * (100.0/y)), (int)(xtotal * (10.0/x)), (int)(ytotal * (10.0/y)));
+        RoundRectangle2D.Double outline2 = new RoundRectangle2D.Double((int)(xtotal * (1.0/x)), (int)(ytotal * (1.0/y)), (int)(xtotal * (188.0/x)), (int)(ytotal * (98.0/y)), (int)(xtotal * (8.0/x)), (int)(ytotal * (8.0/y)));
+        RoundRectangle2D.Double outline3 = new RoundRectangle2D.Double((int)(xtotal * (2.0/x)), (int)(ytotal * (2.0/y)), (int)(xtotal * (186.0/x)), (int)(ytotal * (96.0/y)), (int)(xtotal * (6.0/x)), (int)(ytotal * (6.0/y)));
+        RoundRectangle2D.Double outline4 = new RoundRectangle2D.Double((int)(xtotal * (3.0/x)), (int)(ytotal * (3.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (94.0/y)), (int)(xtotal * (4.0/x)), (int)(ytotal * (4.0/y)));
         
-        RoundRectangle2D.Double end1 = new RoundRectangle2D.Double(0, 0, (int)(xtotal * (185.0/x)), (int)(ytotal * (100.0/y)), (int)(xtotal * (5.0/x)), (int)(ytotal * (5.0/y)));
-        RoundRectangle2D.Double end2 = new RoundRectangle2D.Double(0, 0, (int)(xtotal * (185.0/x)), (int)(ytotal * (100.0/y)), (int)(xtotal * (5.0/x)), (int)(ytotal * (5.0/y)));
+        int[] xs1 = {(int)(xtotal * (190.0/x)), (int)(xtotal * (200.0/x)), (int)(xtotal * (200.0/x)), (int)(xtotal * (190.0/x))};
+        int[] ys1 = {(int)(ytotal * (30.0/y)), (int)(ytotal * (40.0/y)), (int)(ytotal * (60.0/y)), (int)(ytotal * (70.0/y))};
         
-        g2.setColor(c2);
+        Polygon end = new Polygon(xs1, ys1, 4);
+        
+        if(percentPower > .2) {
+            g2.setColor(c2);
+        }
+        
+        else {
+            g2.setColor(c3);
+        }
+        
         g2.fill(percentbattery);
         
         g2.setColor(c1);
@@ -98,6 +108,8 @@ public class Battery extends StaticWidget {
         g2.draw(outline2);
         g2.draw(outline3);
         g2.draw(outline4);
+        
+        g2.fill(end);
         
     }
     
