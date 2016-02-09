@@ -57,9 +57,26 @@ public class LiveMapping extends StaticWidget {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Dimension size = getSize();
         //allows g2.drawings to scale if(x&yvalues == %%)
-        double xTotal = size.getWidth();
-        double yTotal = size.getHeight();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
         //establish default colors
+        
+        // get array
+        /*double xc = 0;
+        double yc = 0;
+        
+        int[][] fieldArray;
+        for(int i = 0; i < fieldArray.length; i++) {
+            for(int j = 0; j < fieldArray[i].length; j++) {
+                if(fieldArray[i][j] == 1) {
+                    xc = xtotal * ((j + 1) / fieldArray.length);
+                    yc = ytotal * ((i + 1) / fieldArray[].length);
+                }
+            }
+        }*/
+        
+        
+        //drawRobot(xc, yc, g2);
         
         drawMap(g2);
         
@@ -77,17 +94,20 @@ public class LiveMapping extends StaticWidget {
         // 1 pixel = 1"
         double x = 319; // 26' 7"
         double y = 649; // 54' 1"
+        // int[267][541]
         
         Color c1 = new Color(47, 76, 55);       // scotch pine
         Color c2 = new Color(204, 204, 204);    // steel gray
-        Color c3 = new Color(48, 66, 55);       // green lines
+        Color c3 = new Color(47, 67, 55);       // green lines
         Color c4 = new Color(223, 41, 43);      // sp red
         Color c5 = new Color(16, 87, 239);      // sp blue
         Color c6 = new Color(95, 95, 91);       // steel outline
+        Color c7 = new Color(1, 1, 1);          // castle top
+        Color c8 = new Color(129, 135, 142);    // batter lines
         
         Rectangle field = new Rectangle(0, 0, (int)xtotal, (int)ytotal);
         Rectangle midline = new Rectangle(0, (int)(ytotal * (320.0/y)), (int)(xtotal * (319.0/x)), (int)(ytotal * (8.0/y)));
-        Rectangle centerline = new Rectangle((int)(xtotal * (159.0/x)), (int)(ytotal * (649.0/y)), (int)(xtotal * (4.0/x)), (int)(ytotal * (649.0/y)));
+        Rectangle centerline = new Rectangle((int)(xtotal * (159.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (649.0/y)));
         
         // 24' * 4' 6"
         Rectangle secretpassage1 = new Rectangle((int)(xtotal * (265.0/x)), 0, (int)(xtotal * (54.0/x)), (int)(ytotal * (288.0/y))); // red
@@ -113,16 +133,24 @@ public class LiveMapping extends StaticWidget {
                      (int)(ytotal * (625.0/y)), (int)(ytotal * (649.0/y))};
         Polygon castle2 = new Polygon(xs2, ys2, 8);
         
+        int[] xs3 = {(int)(xtotal * (148.0/x)), (int)(xtotal * (160.0/x)), (int)(xtotal * (184.0/x)), (int)(xtotal * (196.0/x))};
+        int[] ys3 = {(int)(ytotal * (0.0/y)), (int)(ytotal * (21.0/y)), (int)(ytotal * (21.0/y)), (int)(ytotal * (0.0/y))};
+        Polygon castle1top = new Polygon(xs3, ys3, 4);
+        
+        int[] xs4 = {(int)(xtotal * (123.0/x)), (int)(xtotal * (135.0/x)), (int)(xtotal * (159.0/x)), (int)(xtotal * (171.0/x))};
+        int[] ys4 = {(int)(ytotal * (649.0/y)), (int)(ytotal * (628.0/y)), (int)(ytotal * (628.0/y)), (int)(ytotal * (649.0/y))};
+        Polygon castle2top = new Polygon(xs4, ys4, 4);
+        
         g2.setColor(c1);
         g2.fill(field);
+        
+        g2.setColor(c3);
+        g2.fill(centerline);
         
         g2.setColor(c2);
         g2.fill(midline);
         g2.fill(castle1);
         g2.fill(castle2);
-        
-        g2.setColor(c3);
-        g2.fill(centerline);
         
         g2.setColor(c4);
         g2.draw(secretpassage1);
@@ -145,6 +173,29 @@ public class LiveMapping extends StaticWidget {
         g2.setColor(c6);
         g2.draw(castle1);
         g2.draw(castle2);
+        
+        g2.setColor(c7);
+        g2.fill(castle1top);
+        g2.fill(castle2top);
+        
+        g2.setColor(c8);
+        
+        g2.drawLine((int)(xtotal * (106.0/x)), (int)(ytotal * (24.0/y)), (int)(xtotal * (148.0/x)), 0);
+        g2.drawLine((int)(xtotal * (118.0/x)), (int)(ytotal * (45.0/y)), (int)(xtotal * (160.0/x)), (int)(ytotal * (21.0/y)));
+        g2.drawLine((int)(xtotal * (160.0/x)), (int)(ytotal * (69.0/y)), (int)(xtotal * (160.0/x)), (int)(ytotal * (21.0/y)));
+        g2.drawLine((int)(xtotal * (184.0/x)), (int)(ytotal * (69.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (21.0/y)));
+        g2.drawLine((int)(xtotal * (184.0/x)), (int)(ytotal * (21.0/y)), (int)(xtotal * (226.0/x)), (int)(ytotal * (45.0/y)));
+        g2.drawLine((int)(xtotal * (196.0/x)), 0, (int)(xtotal * (238.0/x)), (int)(ytotal * (24.0/y)));
+        g2.draw(castle1top);
+        
+        //g2.drawLine((int)(xtotal * (0.0/x)), (int)(ytotal * (0.0/y)), (int)(xtotal * (0.0/x)), (int)(ytotal * (0.0/y)));
+        g2.drawLine((int)(xtotal * (81.0/x)), (int)(ytotal * (625.0/y)), (int)(xtotal * (123.0/x)), (int)(ytotal * (649.0/y)));
+        g2.drawLine((int)(xtotal * (93.0/x)), (int)(ytotal * (604.0/y)), (int)(xtotal * (135.0/x)), (int)(ytotal * (628.0/y)));
+        g2.drawLine((int)(xtotal * (135.0/x)), (int)(ytotal * (580.0/y)), (int)(xtotal * (135.0/x)), (int)(ytotal * (628.0/y)));
+        g2.drawLine((int)(xtotal * (159.0/x)), (int)(ytotal * (580.0/y)), (int)(xtotal * (159.0/x)), (int)(ytotal * (628.0/y)));
+        g2.drawLine((int)(xtotal * (201.0/x)), (int)(ytotal * (604.0/y)), (int)(xtotal * (159.0/x)), (int)(ytotal * (628.0/y)));
+        g2.drawLine((int)(xtotal * (213.0/x)), (int)(ytotal * (625.0/y)), (int)(xtotal * (171.0/x)), (int)(ytotal * (649.0/y)));
+        g2.draw(castle2top);
         
     }
     
@@ -174,6 +225,18 @@ public class LiveMapping extends StaticWidget {
         g2.draw(platform);
         g2.draw(ramp1);
         g2.draw(ramp2);
+        
+    }
+    
+    private void drawRobot(double xc, double yc, Graphics2D g2) {
+        
+        Dimension size = getSize();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
+        // 1 pixel = 1"
+        double x = 319; // 26' 7"
+        double y = 649; // 54' 1"
+        // int[267][541]
         
     }
     

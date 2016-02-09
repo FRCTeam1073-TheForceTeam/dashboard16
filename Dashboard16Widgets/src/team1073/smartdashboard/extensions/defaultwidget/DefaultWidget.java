@@ -51,13 +51,14 @@ public class DefaultWidget extends StaticWidget {
     
     @Override
     protected void paintComponent(Graphics g) {
+        
         Graphics2D g2 = (Graphics2D)g;
         //makes it less pixely
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Dimension size = getSize();
         //allows g2.drawings to scale if(x&yvalues == %%)
-        double xTotal = (int)size.getWidth();
-        double yTotal = (int)size.getHeight();
+        double xtotal = (int)size.getWidth();
+        double ytotal = (int)size.getHeight();
         //establish default colors
         Color c1 = new Color(255, 255, 255);    //a color
         
@@ -66,11 +67,11 @@ public class DefaultWidget extends StaticWidget {
         }
         
     }
-    private void drawStuff(Graphics2D g2){
+    private void drawStuff(Graphics2D g2) {
         
         Dimension size = getSize();
-        double xTotal = (int)size.getWidth();
-        double yTotal = (int)size.getHeight();
+        double xtotal = (int)size.getWidth();
+        double ytotal = (int)size.getHeight();
         
     }
     

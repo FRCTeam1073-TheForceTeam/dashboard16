@@ -69,7 +69,7 @@ public class Battery extends StaticWidget {
         }
         
     }
-    private void drawBattery(double percentPower, Graphics2D g2){
+    private void drawBattery(double percentPower, Graphics2D g2) {
         
         Dimension size = getSize();
         double xtotal = (int)size.getWidth();
