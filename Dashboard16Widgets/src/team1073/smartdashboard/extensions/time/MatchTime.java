@@ -67,7 +67,8 @@ public class MatchTime extends StaticWidget {
         g2.fillRect(0, 0, (int)xtotal, (int)ytotal);
         
         //getTime(0, g2);
-        getTime(65, g2);
+        getTime(65, g2);        // green
+        //getTime(135, g2);     // red
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -106,7 +107,8 @@ public class MatchTime extends StaticWidget {
         double y = 120;
         
         Color c1 = new Color(0, 255, 0);
-        Color c2 = new Color(0, 0, 0);
+        Color c2 = new Color(255, 0, 0);
+        Color c3 = new Color(0, 0, 0);
         
         int[] xs1 = {(int)(xtotal * (75.0/x)), (int)(xtotal * (80.0/x)), (int)(xtotal * (85.0/x)), (int)(xtotal * (80.0/x))};
         int[] ys1 = {(int)(ytotal * (50.0/y)), (int)(ytotal * (45.0/y)), (int)(ytotal * (50.0/y)), (int)(ytotal * (55.0/y))};
@@ -116,11 +118,15 @@ public class MatchTime extends StaticWidget {
         int[] ys2 = {(int)(ytotal * (70.0/y)), (int)(ytotal * (65.0/y)), (int)(ytotal * (70.0/y)), (int)(ytotal * (75.0/y))};
         Polygon dot2 = new Polygon(xs2, ys2, 4);
         
-        g2.setColor(c1);
+        if(time <= 130)
+            g2.setColor(c1);
+        else
+            g2.setColor(c2);
+        
         g2.fill(dot1);
         g2.fill(dot2);
         
-        g2.setColor(c2);
+        g2.setColor(c3);
         g2.draw(dot1);
         g2.draw(dot2);
         
@@ -318,9 +324,14 @@ public class MatchTime extends StaticWidget {
         // 50 * 100 overall number dimension
         
         //double display = 150.0 - getMatchTime();
+        //double time = getMatchTime();
+        
+        double time = 65;   // green
+        //double time = 135;    // red
         
         Color c1 = new Color(0, 255, 0);
-        Color c2 = new Color(0, 0, 0);
+        Color c2 = new Color(255, 0, 0);
+        Color c3 = new Color(0, 0, 0);
         
         Dimension size = getSize();
         double xtotal = (int)size.getWidth();
@@ -345,16 +356,22 @@ public class MatchTime extends StaticWidget {
         Polygon htick = new Polygon(xs2, ys2, 6);
         
         if(orient == true) {
-            g2.setColor(c1);
+            if(time <= 130)
+                g2.setColor(c1);
+            else
+                g2.setColor(c2);
             g2.fill(vtick);
-            g2.setColor(c2);
+            g2.setColor(c3);
             g2.draw(vtick);
         }
         
         if(orient == false) {
-            g2.setColor(c1);
+            if(time <= 130)
+                g2.setColor(c1);
+            else
+                g2.setColor(c2);
             g2.fill(htick);
-            g2.setColor(c2);
+            g2.setColor(c3);
             g2.draw(htick);
         }
         
