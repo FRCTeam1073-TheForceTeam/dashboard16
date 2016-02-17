@@ -1,5 +1,8 @@
 /*
  * **HEADER**
+
+ * "todo" extends Widget & uncomment out override (line 43)
+
  */
 package team1073.smartdashboard.extensions.livemap;
 
@@ -14,6 +17,8 @@ import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.*;
 
 //"extends Widget" is super-duper important
+// google todo
+// change to "extends Widget" to test with Robot
 public class LiveMapping extends StaticWidget {
     
     //cd C:\Program Files\SmartDashboard
@@ -33,6 +38,8 @@ public class LiveMapping extends StaticWidget {
         
     }
     
+    
+    // uncomment out this override
     ////////////@Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
@@ -61,24 +68,25 @@ public class LiveMapping extends StaticWidget {
         double ytotal = size.getHeight();
         //establish default colors
         
-        // get array
-        /*double xc = 0;
-        double yc = 0;
+        //drawMap(g2);
         
-        int[][] fieldArray;
+        // get array
+        double xc = 108.0;
+        double yc = 471.0;
+        
+        // get field array (rename - do not change for loop)
+        
+        /*int[][] fieldArray;
         for(int i = 0; i < fieldArray.length; i++) {
             for(int j = 0; j < fieldArray[i].length; j++) {
                 if(fieldArray[i][j] == 1) {
-                    xc = xtotal * ((j + 1) / fieldArray.length);
-                    yc = ytotal * ((i + 1) / fieldArray[].length);
+                    xc = xtotal * (j / fieldArray.length);
+                    yc = ytotal * (i / fieldArray[].length);
                 }
             }
         }*/
         
-        
-        //drawRobot(xc, yc, g2);
-        
-        drawMap(g2);
+        drawRobot(xc, yc, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -237,6 +245,17 @@ public class LiveMapping extends StaticWidget {
         double x = 319; // 26' 7"
         double y = 649; // 54' 1"
         // int[267][541]
+        
+        Color c1 = new Color(0, 0, 0);
+        Color c2 = new Color(0, 0, 0);
+        
+        Rectangle robot = new Rectangle((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (32/x)), (int)(ytotal * (32/y)));
+        
+        g2.setColor(c1);
+        g2.fill(robot);
+        
+        g2.setColor(c2);
+        g2.draw(robot);
         
     }
     
