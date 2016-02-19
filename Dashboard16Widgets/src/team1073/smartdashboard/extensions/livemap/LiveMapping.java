@@ -15,6 +15,7 @@ import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.*;
+import java.util.Random;
 
 //"extends Widget" is super-duper important
 // google todo
@@ -70,22 +71,62 @@ public class LiveMapping extends StaticWidget {
         
         drawMap(g2);
         
+        // int[267][541]
+        //int[][] fieldArray = getMapArray();
+        int[][] fieldArray = new int[267][541];
+        
+        /*drawPlatform(0.0, 192.0, g2);
+        drawPlatform(50.0, 192.0, g2);
+        drawPlatform(100.0, 192.0, g2);
+        drawPlatform(150.0, 192.0, g2);
+        drawPlatform(200.0, 192.0, g2);*/
+        Random rand = new Random(9);
+        int[] defenseXArray = new int[10];
+        int[] defenseYArray = new int[10];
+        
+        /*for(int i = 0; i < 10; i++) {
+            defenseXArray[i] = rand.nextInt() + 1;
+            defenseYArray[i] = rand.nextInt() + 1;
+        }*/
+        
+        int[] defenses = new int[10];
+        
+        
+        
+        double dx = 0.0;
+        for(int i = 0; i < 5; i++) {
+            //inputDefense(fieldArray[defenseXArray[i]][defenseYArray[i]], dx, 192.0, g2);
+            inputDefense(rand.nextInt() + 1, dx, 192.0, g2);
+            dx+=50;
+        }
+        
+        /*drawPlatform(54.0, 410.0, g2);
+        drawPlatform(104.0, 410.0, g2);
+        drawPlatform(154.0, 410.0, g2);
+        drawPlatform(204.0, 410.0, g2);
+        drawPlatform(254.0, 410.0, g2);*/
+        
+        dx = 69.0;
+        for(int i = 5; i < 10; i++) {
+            //inputDefense(fieldArray[defenseXArray[i]][defenseYArray[i]], dx, 410.0, g2);
+            inputDefense(rand.nextInt() + 1, dx, 410.0, g2);
+            dx+=50;
+        }
+        
         // get array
         double xc = 108.0;
         double yc = 471.0;
         
         // get field array (rename - do not change for loop)
         
-        // int[267][541]
-        //int[][] fieldArray = getMapArray();
-        int[][] fieldArray = new int[267][541];
+        
         for(int i = 0; i < fieldArray.length; i++) {
             for(int j = 0; j < fieldArray[i].length; j++) {
                 fieldArray[i][j] = 0;
             }
         }
         
-        fieldArray[108][471] = 1;
+        fieldArray[50][200] = 1;
         
         for(double i = 0.0; i < fieldArray[0].length; i++) {
             for(double j = 0.0; j < fieldArray.length; j++) {
@@ -133,7 +174,59 @@ public class LiveMapping extends StaticWidget {
         
     }
     
-    public void inputDefenses(int defensenum, int xc, int yc, Graphics2D g2) {
+    public void inputDefense(int defense, double xc, double yc, Graphics2D g2) {
+        
+        Dimension size = getSize();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
+        // 1 pixel = 1"
+        double x = 319; // 26' 7"
+        double y = 649; // 54' 1"
+        
+        if(defense == 1) {
+            g2.setColor(new Color(255, 0, 0));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
+        }
+        
+        if(defense == 2) {
+            g2.setColor(new Color(255, 255, 0));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
+        }
+        
+        if(defense == 3) {
+            g2.setColor(new Color(255, 0, 255));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 4) {
+            g2.setColor(new Color(255, 0, 0));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 5) {
+            g2.setColor(new Color(255, 255, 255));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 6) {
+            g2.setColor(new Color(255, 0, 255));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 7) {
+            g2.setColor(new Color(100, 0, 255));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 8) {
+            g2.setColor(new Color(0, 0, 255));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
+        
+        if(defense == 9) {
+            g2.setColor(new Color(0, 0, 0));
+            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
+        }
         
     }
     
@@ -184,8 +277,8 @@ public class LiveMapping extends StaticWidget {
         Rectangle centerline = new Rectangle((int)(xtotal * (159.0/x)), 0, (int)(xtotal * (4.0/x)), (int)(ytotal * (649.0/y)));
         
         // 24' * 4' 6"
-        Rectangle secretpassage1 = new Rectangle((int)(xtotal * (265.0/x)), 0, (int)(xtotal * (54.0/x)), (int)(ytotal * (288.0/y))); // red
-        Rectangle secretpassage2 = new Rectangle(0, (int)(ytotal * (361.0/y)), (int)(xtotal * (54.0/x)), (int)(ytotal * (288.0/y))); // blue
+        Rectangle secretpassage1 = new Rectangle((int)(xtotal * (250.0/x)), 0, (int)(xtotal * (69.0/x)), (int)(ytotal * (288.0/y))); // red
+        Rectangle secretpassage2 = new Rectangle(0, (int)(ytotal * (361.0/y)), (int)(xtotal * (69.0/x)), (int)(ytotal * (288.0/y))); // blue
         
         int[] xs1 = {(int)(xtotal * (106.0/x)), (int)(xtotal * (106.0/x)),
                      (int)(xtotal * (118.0/x)), (int)(xtotal * (160.0/x)),
@@ -238,11 +331,11 @@ public class LiveMapping extends StaticWidget {
         drawPlatform(150.0, 192.0, g2);
         drawPlatform(200.0, 192.0, g2);
         
-        drawPlatform(54.0, 410.0, g2);
-        drawPlatform(104.0, 410.0, g2);
-        drawPlatform(154.0, 410.0, g2);
-        drawPlatform(204.0, 410.0, g2);
-        drawPlatform(254.0, 410.0, g2);
+        drawPlatform(69.0, 410.0, g2);
+        drawPlatform(119.0, 410.0, g2);
+        drawPlatform(169.0, 410.0, g2);
+        drawPlatform(219.0, 410.0, g2);
+        drawPlatform(269.0, 410.0, g2);
         
         g2.setColor(c6);
         g2.draw(castle1);
