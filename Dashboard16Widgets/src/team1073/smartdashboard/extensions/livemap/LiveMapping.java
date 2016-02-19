@@ -68,7 +68,7 @@ public class LiveMapping extends StaticWidget {
         double ytotal = size.getHeight();
         //establish default colors
         
-        //drawMap(g2);
+        drawMap(g2);
         
         // get array
         double xc = 108.0;
@@ -76,21 +76,87 @@ public class LiveMapping extends StaticWidget {
         
         // get field array (rename - do not change for loop)
         
-        /*int[][] fieldArray;
+        // int[267][541]
+        //int[][] fieldArray = getMapArray();
+        int[][] fieldArray = new int[267][541];
         for(int i = 0; i < fieldArray.length; i++) {
             for(int j = 0; j < fieldArray[i].length; j++) {
-                if(fieldArray[i][j] == 1) {
+                fieldArray[i][j] = 0;
+            }
+        }
+        
+        fieldArray[108][471] = 1;
+        
+        for(double i = 0.0; i < fieldArray[0].length; i++) {
+            for(double j = 0.0; j < fieldArray.length; j++) {
+                if(fieldArray[(int)j][(int)i] == 1) {
                     xc = xtotal * (j / fieldArray.length);
-                    yc = ytotal * (i / fieldArray[].length);
+                    yc = ytotal * (i / fieldArray[0].length);
                 }
             }
-        }*/
+        }
         
         drawRobot(xc, yc, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
         }
+        
+    }
+    
+    private void drawPlatform(double dx, double dy, Graphics2D g2) {
+        
+        Dimension size = getSize();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
+        // 1 pixel = 1"
+        double x = 319; // 26' 7"
+        double y = 649; // 54' 1"
+        
+        Color c1 = new Color(204, 204, 204);    // steel gray
+        Color c2 = new Color(95, 95, 91);       // outline
+        
+        //Rectangle platform1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)));
+        Rectangle platform = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 12.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
+        Rectangle ramp1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12.0/y)));
+        Rectangle ramp2 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 36.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12./y)));
+
+        g2.setColor(c1);
+        g2.fill(platform);
+        g2.fill(ramp1);
+        g2.fill(ramp2);
+        
+        g2.setColor(c2);
+        g2.draw(platform);
+        g2.draw(ramp1);
+        g2.draw(ramp2);
+        
+    }
+    
+    public void inputDefenses(int defensenum, int xc, int yc, Graphics2D g2) {
+        
+    }
+    
+    private void drawRobot(double xc, double yc, Graphics2D g2) {
+        
+        Dimension size = getSize();
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
+        // 1 pixel = 1"
+        double x = 319; // 26' 7"
+        double y = 649; // 54' 1"
+        // int[267][541]
+        
+        Color c1 = new Color(0, 0, 0);
+        Color c2 = new Color(0, 0, 0);
+        
+        Rectangle robot = new Rectangle((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (32/x)), (int)(ytotal * (32/y)));
+        
+        g2.setColor(c1);
+        g2.fill(robot);
+        
+        g2.setColor(c2);
+        g2.draw(robot);
         
     }
     
@@ -166,17 +232,17 @@ public class LiveMapping extends StaticWidget {
         g2.setColor(c5);
         g2.draw(secretpassage2);
         
-        drawPlatform(0.0, 180.0, g2);
-        drawPlatform(50.0, 180.0, g2);
-        drawPlatform(100.0, 180.0, g2);
-        drawPlatform(150.0, 180.0, g2);
-        drawPlatform(200.0, 180.0, g2);
+        drawPlatform(0.0, 192.0, g2);
+        drawPlatform(50.0, 192.0, g2);
+        drawPlatform(100.0, 192.0, g2);
+        drawPlatform(150.0, 192.0, g2);
+        drawPlatform(200.0, 192.0, g2);
         
-        drawPlatform(54.0, 422.0, g2);
-        drawPlatform(104.0, 422.0, g2);
-        drawPlatform(154.0, 422.0, g2);
-        drawPlatform(204.0, 422.0, g2);
-        drawPlatform(254.0, 422.0, g2);
+        drawPlatform(54.0, 410.0, g2);
+        drawPlatform(104.0, 410.0, g2);
+        drawPlatform(154.0, 410.0, g2);
+        drawPlatform(204.0, 410.0, g2);
+        drawPlatform(254.0, 410.0, g2);
         
         g2.setColor(c6);
         g2.draw(castle1);
@@ -204,58 +270,6 @@ public class LiveMapping extends StaticWidget {
         g2.drawLine((int)(xtotal * (201.0/x)), (int)(ytotal * (604.0/y)), (int)(xtotal * (159.0/x)), (int)(ytotal * (628.0/y)));
         g2.drawLine((int)(xtotal * (213.0/x)), (int)(ytotal * (625.0/y)), (int)(xtotal * (171.0/x)), (int)(ytotal * (649.0/y)));
         g2.draw(castle2top);
-        
-    }
-    
-    private void drawPlatform(double dx, double dy, Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
-        // 1 pixel = 1"
-        double x = 319; // 26' 7"
-        double y = 649; // 54' 1"
-        
-        Color c1 = new Color(204, 204, 204);    // steel gray
-        Color c2 = new Color(95, 95, 91);       // outline
-        
-        //Rectangle platform1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)));
-        Rectangle platform = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 12.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
-        Rectangle ramp1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12.0/y)));
-        Rectangle ramp2 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 36.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12./y)));
-
-        g2.setColor(c1);
-        g2.fill(platform);
-        g2.fill(ramp1);
-        g2.fill(ramp2);
-        
-        g2.setColor(c2);
-        g2.draw(platform);
-        g2.draw(ramp1);
-        g2.draw(ramp2);
-        
-    }
-    
-    private void drawRobot(double xc, double yc, Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
-        // 1 pixel = 1"
-        double x = 319; // 26' 7"
-        double y = 649; // 54' 1"
-        // int[267][541]
-        
-        Color c1 = new Color(0, 0, 0);
-        Color c2 = new Color(0, 0, 0);
-        
-        Rectangle robot = new Rectangle((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (32/x)), (int)(ytotal * (32/y)));
-        
-        g2.setColor(c1);
-        g2.fill(robot);
-        
-        g2.setColor(c2);
-        g2.draw(robot);
         
     }
     
