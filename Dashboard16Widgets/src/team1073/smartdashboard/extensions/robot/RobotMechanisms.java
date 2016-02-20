@@ -71,6 +71,8 @@ public class RobotMechanisms extends StaticWidget {
         
         drawRobot(g2);
         
+        drawDefenseManipulator(30.0, true, g2);
+        
         if(value == 0) {
             //mode.add("nothing!", 0);
         }
@@ -91,8 +93,8 @@ public class RobotMechanisms extends StaticWidget {
         Color c5 = new Color(129, 134, 156);    // wheel inside
         Color c6 = new Color(105, 109, 129);    // wheel outside
         
-        double xpos1 = 0.0;
-        double ypos1 = 0.0;
+        double xpos1 = getWidth() - 256.0;
+        double ypos1 = getHeight() - 108.0;
         int[] xs1 = {(int)(xtotal * (xpos1/x)), (int)(xtotal * ((256.0 + xpos1)/x)),
                      (int)(xtotal * ((256.0 + xpos1)/x)), (int)(xtotal * ((224.0 + xpos1)/x)),
                      (int)(xtotal * ((32.0 + xpos1)/x)), (int)(xtotal * ((xpos1)/x))};
@@ -102,12 +104,12 @@ public class RobotMechanisms extends StaticWidget {
         
         Polygon drivetrainframe = new Polygon(xs1, ys1, 6);
         
-        Rectangle bumperthing1 = new Rectangle((int)(xtotal * (xpos1/x)), (int)(ytotal * ((24.0 + ypos1)/x)), (int)(xtotal * ((256.0 + xpos1)/x)), (int)(ytotal * ((8.0 + ypos1)/x)));
-        Rectangle bumperthing2 = new Rectangle((int)(xtotal * (xpos1/x)), (int)(ytotal * ((40.0 + ypos1)/x)), (int)(xtotal * ((256.0 + xpos1)/x)), (int)(ytotal * ((8.0 + ypos1)/x)));
+        Rectangle bumperthing1 = new Rectangle((int)(xtotal * (xpos1/x)), (int)(ytotal * ((24.0 + ypos1)/x)), (int)(xtotal * (256.0/x)), (int)(ytotal * (8.0/x)));
+        Rectangle bumperthing2 = new Rectangle((int)(xtotal * (xpos1/x)), (int)(ytotal * ((40.0 + ypos1)/x)), (int)(xtotal * (256.0/x)), (int)(ytotal * (8.0/x)));
         
-        Ellipse2D.Double wheel1 = new Ellipse2D.Double((int)(xtotal * ((8.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * ((64.0 + xpos1)/x)), (int)(ytotal * ((64.0 + ypos1)/x)));
-        Ellipse2D.Double wheel2 = new Ellipse2D.Double((int)(xtotal * ((96.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * ((64.0 + xpos1)/x)), (int)(ytotal * ((64.0 + ypos1)/x)));
-        Ellipse2D.Double wheel3 = new Ellipse2D.Double((int)(xtotal * ((184.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * ((64.0 + xpos1)/x)), (int)(ytotal * ((64.0 + ypos1)/x)));
+        Ellipse2D.Double wheel1 = new Ellipse2D.Double((int)(xtotal * ((8.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * (64.0/x)), (int)(ytotal * (64.0/x)));
+        Ellipse2D.Double wheel2 = new Ellipse2D.Double((int)(xtotal * ((96.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * (64.0/x)), (int)(ytotal * (64.0/x)));
+        Ellipse2D.Double wheel3 = new Ellipse2D.Double((int)(xtotal * ((184.0 + xpos1)/x)), (int)(ytotal * ((44.0 + ypos1)/x)), (int)(xtotal * (64.0/x)), (int)(ytotal * (64.0/x)));
         
         g2.setColor(c6);
         g2.fill(wheel1);
@@ -119,10 +121,10 @@ public class RobotMechanisms extends StaticWidget {
         g2.fill(wheel2);
         g2.fill(wheel3);*/
         
-        g2.setColor(c1);
+        g2.setColor(c3);
         g2.fill(drivetrainframe);
         
-        g2.setColor(c2);
+        g2.setColor(c4);
         g2.draw(drivetrainframe);
         
         g2.setColor(c3);
@@ -156,6 +158,43 @@ public class RobotMechanisms extends StaticWidget {
         Dimension size = getSize();
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
+        double x = 0;
+        double y = 0;
+        int xc = 0;
+        int yc = 0;
+        
+        double xpos1 = getWidth() - 256.0;
+        double ypos1 = (getHeight() - 108.0) + 48.0;
+        
+        // 15 + 10
+        // angle is screwy and works with orientation
+        
+        double sinangle = Math.sin(Math.toRadians(angle));
+        double cosangle = Math.cos(Math.toRadians(angle));
+        
+        g2.setColor(Color.RED);
+        g2.drawLine((int)(xpos1 - 60.0), 10, (int)(xpos1 - 60.0), 400);
+        
+        // works
+        g2.setColor(Color.BLACK);
+        g2.drawLine((int)xpos1, (int)ypos1, (int)(xpos1 - (60.0 * cosangle)), (int)(ypos1 - (60.0 * sinangle)));
+        
+        // works
+        if(piston == true) {
+            g2.setColor(Color.BLACK);
+            g2.drawLine((int)(xpos1 - (60.0 * cosangle)), (int)(ypos1 - (60.0 * sinangle)), (int)((xpos1 - (40.0 * cosangle)) - (60.0 * cosangle)), (int)((ypos1 - (40.0 * sinangle)) - (60.0 * sinangle)));
+        }
+        
+        /*
+         1    2
+         3    4
+         3&4 direct trig values
+        */
+        
+        int[] xs1 = {(int)(xtotal * ((xc + 0.0)/x)), (int)(xtotal * ((xc + 0.0)/x)),
+                     (int)(xtotal * ((xc + 0.0)/x)), (int)(xtotal * ((xc + 0.0)/x))};
+        int[] ys1 = {(int)(ytotal * ((yc + 0.0)/y)), (int)(ytotal * ((yc + 0.0)/y)),
+                     (int)(ytotal * ((yc + 0.0)/y)), (int)(ytotal * ((yc + 0.0)/y))};
         
     }
     
