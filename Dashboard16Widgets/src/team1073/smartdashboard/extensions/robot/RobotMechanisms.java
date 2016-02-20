@@ -65,13 +65,13 @@ public class RobotMechanisms extends StaticWidget {
         
         //double laucherangle = getAngle();
         // will be in degrees
-        double laucherangle = 45.0;
+        //double laucherangle = 45.0;
         
         //drawLaucher(laucherangle, g2);
         
         drawRobot(g2);
         
-        drawDefenseManipulator(15.0, true, g2);
+        drawDefenseManipulator(45.0, true, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -192,10 +192,15 @@ public class RobotMechanisms extends StaticWidget {
          3&4 direct trig values
         */
         
-        int[] xs1 = {(int)(xtotal * ((xc + 0.0)/x)), (int)(xtotal * ((xc + 0.0)/x)),
-                     (int)(xtotal * ((xc + 0.0)/x)), (int)(xtotal * ((xc + 0.0)/x))};
-        int[] ys1 = {(int)(ytotal * ((yc + 0.0)/y)), (int)(ytotal * ((yc + 0.0)/y)),
-                     (int)(ytotal * ((yc + 0.0)/y)), (int)(ytotal * ((yc + 0.0)/y))};
+        int[] xs1 = {(int)(xpos1 - (60.0 * cosangle) + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))), (int)(xpos1 + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))),
+                     (int)xpos1, (int)(xpos1 - (60.0 * cosangle))};
+        int[] ys1 = {(int)(ypos1 - (60.0 * sinangle) - (8.0 * (Math.sin(Math.toRadians(angle + 90.0))))), (int)(ypos1 - (8.0 * (Math.sin(Math.toRadians(angle + 90.0))))),
+                     (int)ypos1, (int)(ypos1 - (60.0 * sinangle))};
+        
+        Polygon defenseArm = new Polygon(xs1, ys1, 4);
+        g2.setColor(Color.GRAY);
+        //g2.fill(defenseArm);hi
+        g2.fill(defenseArm);
         
     }
     
