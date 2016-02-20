@@ -71,7 +71,7 @@ public class RobotMechanisms extends StaticWidget {
         
         drawRobot(g2);
         
-        drawDefenseManipulator(30.0, true, g2);
+        drawDefenseManipulator(15.0, true, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -164,10 +164,11 @@ public class RobotMechanisms extends StaticWidget {
         int yc = 0;
         
         double xpos1 = getWidth() - 256.0;
+        //double xpos1 = 100.0;
         double ypos1 = (getHeight() - 108.0) + 48.0;
         
         // 15 + 10
-        // angle is screwy and works with orientation
+        // angle is screwy and works nicely with orientation
         
         double sinangle = Math.sin(Math.toRadians(angle));
         double cosangle = Math.cos(Math.toRadians(angle));
@@ -181,7 +182,7 @@ public class RobotMechanisms extends StaticWidget {
         
         // works
         if(piston == true) {
-            g2.setColor(Color.BLACK);
+            g2.setColor(Color.GRAY);
             g2.drawLine((int)(xpos1 - (60.0 * cosangle)), (int)(ypos1 - (60.0 * sinangle)), (int)((xpos1 - (40.0 * cosangle)) - (60.0 * cosangle)), (int)((ypos1 - (40.0 * sinangle)) - (60.0 * sinangle)));
         }
         
