@@ -12,6 +12,7 @@ import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
 import static edu.wpi.first.wpilibj.Timer.getMatchTime;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 
 //"extends Widget" is super-duper important
@@ -25,6 +26,9 @@ public class MatchTime extends StaticWidget {
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Match Time");
 
+    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    int matchTime = 150 - (int)(table.getNumber("matchTime", 0.0));
+    
     
     public MatchTime() {
         /*This constructor is only necessary for testing purposes*/
@@ -67,7 +71,7 @@ public class MatchTime extends StaticWidget {
         g2.fillRect(0, 0, (int)xtotal, (int)ytotal);
         
         //getTime(0, g2);
-        getTime(65, g2);        // green
+        getTime(matchTime, g2);        // green
         //getTime(135, g2);     // red
         
         if(value == 0) {
@@ -76,10 +80,11 @@ public class MatchTime extends StaticWidget {
         
     }
     
-    private void getTime(int time, Graphics2D g2) {
+    private void getTime(double time, Graphics2D g2) {
         
         //int display = 150 - getMatchTime();
-        int display = 150 - time;
+        //int display = 150 - time;
+        int display = (int)time;
         
         for(int i = 0; i < 3; i++) {
             if(display / 60 == i)
@@ -101,10 +106,10 @@ public class MatchTime extends StaticWidget {
         }
         
         Dimension size = getSize();
-        double xtotal = (int)size.getWidth();
-        double ytotal = (int)size.getHeight();
-        double x = 225;
-        double y = 120;
+        double xtotal = size.getWidth();
+        double ytotal = size.getHeight();
+        double x = 225.0;
+        double y = 120.0;
         
         Color c1 = new Color(0, 255, 0);
         Color c2 = new Color(255, 0, 0);
@@ -118,7 +123,7 @@ public class MatchTime extends StaticWidget {
         int[] ys2 = {(int)(ytotal * (70.0/y)), (int)(ytotal * (65.0/y)), (int)(ytotal * (70.0/y)), (int)(ytotal * (75.0/y))};
         Polygon dot2 = new Polygon(xs2, ys2, 4);
         
-        if(time <= 130)
+        if(time > 20)
             g2.setColor(c1);
         else
             g2.setColor(c2);
@@ -326,7 +331,7 @@ public class MatchTime extends StaticWidget {
         //double display = 150.0 - getMatchTime();
         //double time = getMatchTime();
         
-        double time = 65;   // green
+        double time = matchTime;   // green
         //double time = 135;    // red
         
         Color c1 = new Color(0, 255, 0);
@@ -356,7 +361,7 @@ public class MatchTime extends StaticWidget {
         Polygon htick = new Polygon(xs2, ys2, 6);
         
         if(orient == true) {
-            if(time <= 130)
+            if(time > 20)
                 g2.setColor(c1);
             else
                 g2.setColor(c2);
@@ -366,7 +371,7 @@ public class MatchTime extends StaticWidget {
         }
         
         if(orient == false) {
-            if(time <= 130)
+            if(time > 20)
                 g2.setColor(c1);
             else
                 g2.setColor(c2);

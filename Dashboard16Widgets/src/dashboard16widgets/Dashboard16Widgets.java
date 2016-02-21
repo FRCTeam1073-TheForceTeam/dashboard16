@@ -4,18 +4,36 @@
  * and open the template in the editor.
  */
 package dashboard16widgets;
-
 /**
  *
- * @author owner
+ * @author Julia
  */
-public class Dashboard16Widgets {
+import edu.wpi.first.smartdashboard.robot.Robot;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.tables.ITable;
 
+public class Dashboard16Widgets {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        ITable table = Robot.getTable();
+        //table.beginTransaction();
+        
+        int xcRobot = (int)(table.getNumber("xcRobot", 100));
+        int ycRobot = (int)(table.getNumber("ycRobot", 100));
+        
+        double lauchElev = table.getNumber("lauchElev", 45.0);
+        double defManip = table.getNumber("defManip", 45.0);
+        boolean piston = table.getBoolean("piston", true);
+        
+        
+        
+        //table.endTransaction();
+        
     }
     
 }
+

@@ -14,6 +14,7 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 import java.util.Random;
 
@@ -29,7 +30,10 @@ public class LiveMapping extends StaticWidget {
     public static final String NAME = "LiveMapping";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Live Map");
-
+    
+    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    int xcRobot = (int)(table.getNumber("xcRobot", 100));
+    int ycRobot = (int)(table.getNumber("ycRobot", 100));
     
     public LiveMapping() {
         /*This constructor is only necessary for testing purposes*/
@@ -71,73 +75,7 @@ public class LiveMapping extends StaticWidget {
         
         drawMap(g2);
         
-        // int[267][541]
-        //int[][] fieldArray = getMapArray();
-        int[][] fieldArray = new int[267][541];
-        
-        /*drawPlatform(0.0, 192.0, g2);
-        drawPlatform(50.0, 192.0, g2);
-        drawPlatform(100.0, 192.0, g2);
-        drawPlatform(150.0, 192.0, g2);
-        drawPlatform(200.0, 192.0, g2);*/
-        Random rand = new Random(9);
-        int[] defenseXArray = new int[10];
-        int[] defenseYArray = new int[10];
-        
-        /*for(int i = 0; i < 10; i++) {
-            defenseXArray[i] = rand.nextInt() + 1;
-            defenseYArray[i] = rand.nextInt() + 1;
-        }*/
-        
-        int[] defenses = new int[10];
-        
-        
-        
-        double dx = 0.0;
-        for(int i = 0; i < 5; i++) {
-            //inputDefense(fieldArray[defenseXArray[i]][defenseYArray[i]], dx, 192.0, g2);
-            inputDefense(rand.nextInt() + 1, dx, 192.0, g2);
-            dx+=50;
-        }
-        
-        /*drawPlatform(54.0, 410.0, g2);
-        drawPlatform(104.0, 410.0, g2);
-        drawPlatform(154.0, 410.0, g2);
-        drawPlatform(204.0, 410.0, g2);
-        drawPlatform(254.0, 410.0, g2);*/
-        
-        dx = 69.0;
-        for(int i = 5; i < 10; i++) {
-            //inputDefense(fieldArray[defenseXArray[i]][defenseYArray[i]], dx, 410.0, g2);
-            inputDefense(rand.nextInt() + 1, dx, 410.0, g2);
-            dx+=50;
-        }
-        
-        // get array
-        double xc = 108.0;
-        double yc = 471.0;
-        
-        // get field array (rename - do not change for loop)
-        
-        
-        for(int i = 0; i < fieldArray.length; i++) {
-            for(int j = 0; j < fieldArray[i].length; j++) {
-                fieldArray[i][j] = 0;
-            }
-        }
-        
-        fieldArray[50][200] = 1;
-        
-        for(double i = 0.0; i < fieldArray[0].length; i++) {
-            for(double j = 0.0; j < fieldArray.length; j++) {
-                if(fieldArray[(int)j][(int)i] == 1) {
-                    xc = xtotal * (j / fieldArray.length);
-                    yc = ytotal * (i / fieldArray[0].length);
-                }
-            }
-        }
-        
-        drawRobot(xc, yc, g2);
+        drawRobot(xcRobot, ycRobot, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
