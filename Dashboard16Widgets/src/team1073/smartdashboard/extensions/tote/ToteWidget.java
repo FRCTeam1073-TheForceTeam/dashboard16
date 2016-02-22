@@ -49,7 +49,7 @@ public class ToteWidget extends StaticWidget {
 
     @Override
     public void init() {
-        setPreferredSize(new Dimension(300, 600));
+        setPreferredSize(new Dimension(300, 100));
     }
 
     @Override
@@ -113,95 +113,7 @@ public class ToteWidget extends StaticWidget {
             drawContainer((int)(yTotal * (64.0/600.0)), c5, c6, g2);
             */
         
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
-        
-        if(value == 1) {
-            //mode.add("1 tote", 1);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-        }
-        
-        if(value == 2) {
-            //mode.add("2 totes", 2);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c3, c4, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c1, c2, g2);
-        }
-            
-        if(value == 3) {
-            //mode.add("3 totes", 3);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c3, c4, g2);
-            //tote 3
-            drawTote((int)(yTotal * (338.0/600.0)), c1, c2, g2);
-        }
-        
-        if(value == 4) {
-            //mode.add("4 totes", 4);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c1, c2, g2);
-            //tote 3
-            drawTote((int)(yTotal * (338.0/600.0)), c3, c4, g2);
-            //tote 4
-            drawTote((int)(yTotal * (257.0/600.0)), c1, c2, g2);
-        }
-        
-        if(value == 5) {
-            //mode.add("container", 5);
-            //container(ground)
-            drawContainer((int)(yTotal * (388.0/600.0)), c5, c6, g2);
-        }
-        
-        if(value == 6) {
-            //mode.add("1 tote w/ container", 6);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-            //container(on 1 tote)
-            drawContainer((int)(yTotal * (307.0/600.0)), c5, c6, g2);
-        }
-        
-        if(value == 7) {
-            //mode.add("2 totes w/ container", 7);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c3, c4, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c1, c2, g2);
-            //container(on 2 totes)
-            drawContainer((int)(yTotal * (226.0/600.0)), c5, c6, g2);
-        }
-        
-        if(value == 8) {
-            //mode.add("3 totes w/ container", 8);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c3, c4, g2);
-            //tote 3
-            drawTote((int)(yTotal * (338.0/600.0)), c1, c2, g2);
-            //container(on 3 totes)
-            drawContainer((int)(yTotal * (145.0/600.0)), c5, c6, g2);
-        }
-        
-        if(value == 9) {
-            //mode.add("4 totes w/ container", 9);
-            //tote 1
-            drawTote((int)(yTotal * (500.0/600.0)), c1, c2, g2);
-            //tote 2
-            drawTote((int)(yTotal * (419.0/600.0)), c1, c2, g2);
-            //tote 3
-            drawTote((int)(yTotal * (338.0/600.0)), c3, c4, g2);
-            //tote 4
-            drawTote((int)(yTotal * (257.0/600.0)), c1, c2, g2);
-            //container(on 4 totes)
-            drawContainer((int)(yTotal * (64.0/600.0)), c5, c6, g2);
-        }
+        drawTote((int)(yTotal * (10.0/100.0)), c3, c4, g2);
         
     }
     private void drawTote(int y, Color c1, Color c2, Graphics2D g2){
@@ -216,54 +128,42 @@ public class ToteWidget extends StaticWidget {
         xs1[1] = (int)(xTotal * (67.0/300.0));
         xs1[2] = (int)(xTotal * (233.0/300.0));
         xs1[3] = (int)(xTotal * (236.0/300.0));
-        ys1[0] = y + (int)(yTotal * (10.0/600.0));
-        ys1[1] = y + (int)(yTotal * (80.0/600.0));
-        ys1[2] = y + (int)(yTotal * (80.0/600.0));
-        ys1[3] = y + (int)(yTotal * (10.0/600.0));
+        ys1[0] = y + (int)(yTotal * (10.0/100.0));
+        ys1[1] = y + (int)(yTotal * (80.0/100.0));
+        ys1[2] = y + (int)(yTotal * (80.0/100.0));
+        ys1[3] = y + (int)(yTotal * (10.0/100.0));
         Polygon toteBase = new Polygon(xs1, ys1, 4);
         
         g2.setPaint(c1);
         
-        g2.fillRect((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (176.0/300.0)), (int)(yTotal * (10.0/600.0)));
+        g2.fillRect((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (176.0/300.0)), (int)(yTotal * (10.0/100.0)));
         g2.fillPolygon(toteBase);
-        g2.fillRect((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (10.0/300.0)), (int)(yTotal * (25.0/600.0)));
-        g2.fillRect((int)(xTotal * (229.0/300.0)), y, (int)(xTotal * (10.0/300.0)), (int)(yTotal * (25.0/600.0)));
+        g2.fillRect((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (10.0/300.0)), (int)(yTotal * (25.0/100.0)));
+        g2.fillRect((int)(xTotal * (229.0/300.0)), y, (int)(xTotal * (10.0/300.0)), (int)(yTotal * (25.0/100.0)));
         
         g2.setPaint(c2);
         
         g2.drawRect((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (176.0/300.0)), (int)(yTotal * 10.0/600.0));
         g2.drawPolygon(toteBase);
-        g2.drawLine((int)(xTotal * (73.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (76.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (95.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (92.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (106.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (109.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (109.0/300.0)), y + (int)(yTotal * (60.0/600.0)), (int)(xTotal * (125.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (128.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (125.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (139.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (142.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (161.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (158.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (172.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (175.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (175.0/300.0)), y + (int)(yTotal * (60.0/600.0)), (int)(xTotal * (191.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (194.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (191.0/300.0)), y + (int)(yTotal * (60.0/600.0)));
-        g2.drawLine((int)(xTotal * (205.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (208.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (227.0/300.0)), y + (int)(yTotal * (10.0/600.0)), (int)(xTotal * (224.0/300.0)), y + (int)(yTotal * (80.0/600.0)));
-        g2.drawLine((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (62.0/300.0)), y + (int)(yTotal * (25.0/600.0)));
-        g2.drawLine((int)(xTotal * (62.0/300.0)), y + (int)(yTotal * (25.0/600.0)), (int)(xTotal * (65.0/300.0)), y + (int)(yTotal * (25.0/600.0)));
-        g2.drawLine((int)(xTotal * (238.0/300.0)), y, (int)(xTotal * (238.0/300.0)), y + (int)(yTotal * (25.0/600.0)));
-        g2.drawLine((int)(xTotal * (238.0/300.0)), y + (int)(yTotal * (25.0/600.0)), (int)(xTotal * (235.0/300.0)), y + (int)(yTotal * 25.0/600.0));
+        g2.drawLine((int)(xTotal * (73.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (76.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (95.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (92.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (106.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (109.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (109.0/300.0)), y + (int)(yTotal * (60.0/100.0)), (int)(xTotal * (125.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (128.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (125.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (139.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (142.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (161.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (158.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (172.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (175.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (175.0/300.0)), y + (int)(yTotal * (60.0/100.0)), (int)(xTotal * (191.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (194.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (191.0/300.0)), y + (int)(yTotal * (60.0/100.0)));
+        g2.drawLine((int)(xTotal * (205.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (208.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (227.0/300.0)), y + (int)(yTotal * (10.0/100.0)), (int)(xTotal * (224.0/300.0)), y + (int)(yTotal * (80.0/100.0)));
+        g2.drawLine((int)(xTotal * (62.0/300.0)), y, (int)(xTotal * (62.0/300.0)), y + (int)(yTotal * (25.0/100.0)));
+        g2.drawLine((int)(xTotal * (62.0/300.0)), y + (int)(yTotal * (25.0/100.0)), (int)(xTotal * (65.0/300.0)), y + (int)(yTotal * (25.0/100.0)));
+        g2.drawLine((int)(xTotal * (238.0/300.0)), y, (int)(xTotal * (238.0/300.0)), y + (int)(yTotal * (25.0/100.0)));
+        g2.drawLine((int)(xTotal * (238.0/300.0)), y + (int)(yTotal * (25.0/100.0)), (int)(xTotal * (235.0/300.0)), y + (int)(yTotal * 25.0/100.0));
     
     }
-    /*
-    private void drawNoodle(int y, Color c1, Color c2, Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xTotal = (int)size.getWidth();
-        double yTotal = (int)size.getHeight();
-        
-        int[] xs1 = new int[4];
-        int[] ys1 = new int[4];
-        
-        
-    }
-    */
+    
     private void drawContainer(int y, Color c1, Color c2, Graphics2D g2) {
         
         Dimension size = getSize();
