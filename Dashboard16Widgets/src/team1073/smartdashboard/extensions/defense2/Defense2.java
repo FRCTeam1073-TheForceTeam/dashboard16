@@ -12,6 +12,7 @@ import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.*;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -24,8 +25,14 @@ public class Defense2 extends StaticWidget {
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Defense 2");
     
+    String[] defenses = {"nothing!", "portcullis", "cheval de fries", "moat", "ramparts", "drawbridge", "sally port", "rock wall", "rough terrain"};
+    JComboBox pickDefense = new JComboBox(defenses);
+    //pickDefense.setBounds(new Rectangle(0, 0, 100, 40));
+    //pickDefense.setVisible(true);
+    
     public Defense2() {
-        mode.add("nothing!", 0);
+        
+        /*mode.add("nothing!", 0);
         mode.add("portcullis", 1);
         mode.add("cheval de fries", 2);
         mode.add("moat", 3);
@@ -33,7 +40,8 @@ public class Defense2 extends StaticWidget {
         mode.add("drawbridge", 5);
         mode.add("sally port", 6);
         mode.add("rock wall", 7);
-        mode.add("rough terrain", 8);
+        mode.add("rough terrain", 8);*/
+        
     }
     
     public void setValue(Object o) {
@@ -44,7 +52,10 @@ public class Defense2 extends StaticWidget {
     @Override
     public void init() {
         // defenses 50" wide (1" = 4 pixels)
+        pickDefense.setVisible(true);
+        this.add(pickDefense);
         setPreferredSize(new Dimension(200, 288));
+        
     }
 
     @Override
@@ -64,7 +75,44 @@ public class Defense2 extends StaticWidget {
         double x = 200;
         double y = 288.0;        
         
-        if(value == 0) {
+        //drawBridge(g2);
+        if(pickDefense.getSelectedItem() == "nothing!") {
+            // do nothing
+        }
+        
+        if(pickDefense.getSelectedItem() == "portcullis") {
+            drawPortcullis(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "cheval de fries") {
+            drawFries(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "moat") {
+            drawMoat(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "ramparts") {
+            drawRamparts(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "drawbridge") {
+            drawBridge(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "sally port") {
+            drawSallyPort(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "rock wall") {
+            buildWall(g2);
+        }
+        
+        if(pickDefense.getSelectedItem() == "rough terrain") {
+            drawRoughTerrain(g2);
+        }
+        
+        /*if(value == 0) {
             // nothing!
         }
         
@@ -98,7 +146,7 @@ public class Defense2 extends StaticWidget {
         
         else if(value == 8) {
             drawRoughTerrain(g2);
-        }
+        }*/
         
     }
     
@@ -179,7 +227,7 @@ public class Defense2 extends StaticWidget {
         
     }
     
-    public void drawChevalDeFries(Graphics2D g2) {
+    public void drawFries(Graphics2D g2) {
         
         //allows g2.drawings to scale if(x&yvalues == %%)
         double x = 200.0;   // 50"
@@ -205,8 +253,8 @@ public class Defense2 extends StaticWidget {
         Rectangle fry3 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (236.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (40.0/y)));
         Rectangle fry4 = new Rectangle((int)(xtotal * (148.0/x)), (int)(ytotal * (236.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (40.0/y)));
         
-        Rectangle pipe1 = new Rectangle((int)(xtotal * (4.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (40.0/x)), (int)(ytotal * (8.0/y)));
-        Rectangle pipe2 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (40.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle pipe1 = new Rectangle((int)(xtotal * (4.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle pipe2 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (8.0/y)));
         
         g2.setColor(c1);
         g2.fill(platform);
@@ -285,11 +333,13 @@ public class Defense2 extends StaticWidget {
         // 2" high
         g2.setColor(c1);
         g2.fill(platform);
+        g2.fill(leftpart);
+        g2.fill(rightpart);
         
         g2.setColor(c2);
         g2.draw(platform);
-        
-        //fill/drawramparts
+        g2.draw(leftpart);
+        g2.draw(rightpart);
         
     }
     
@@ -305,14 +355,63 @@ public class Defense2 extends StaticWidget {
         
         Color c1 = new Color(169, 169, 169);    // platform fill
         Color c2 = new Color(126, 126, 126);    // platform outline
+        Color c3 = new Color(130, 137, 147);    // post fill
+        Color c4 = new Color(99, 103, 111);     // post outline
+        Color c5 = new Color(83, 84, 85);       // top fill
+        Color c6 = new Color(39, 39, 39);       // grid fill
+        Color c7 = new Color(83, 54, 47);       // drawbridge fill
+        Color c8 = new Color(48, 31, 27);
         
         Rectangle platform = new Rectangle(0, (int)(ytotal * (276.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (12.0/y)));
+        Rectangle leftpost = new Rectangle((int)(xtotal * (4.0/x)), (int)(ytotal * (60.0/y)), (int)(xtotal * (8.0/x)), (int)(ytotal * (216.0/y)));
+        Rectangle rightpost = new Rectangle((int)(xtotal * (188.0/x)), (int)(ytotal * (60.0/y)), (int)(xtotal * (8.0/x)), (int)(ytotal * (216.0/y)));
 
+        int[] xs1 = {(int)(xtotal * (4.0/x)), (int)(xtotal * (4.0/x)), 
+                     (int)(xtotal * (22.0/x)), (int)(xtotal * (22.0/x)),
+                     (int)(xtotal * (50.0/x)), (int)(xtotal * (50.0/x)),
+                     (int)(xtotal * (86.0/x)), (int)(xtotal * (86.0/x)),
+                     (int)(xtotal * (114.0/x)), (int)(xtotal * (114.0/x)),
+                     (int)(xtotal * (150.0/x)), (int)(xtotal * (150.0/x)),
+                     (int)(xtotal * (178.0/x)), (int)(xtotal * (178.0/x)),
+                     (int)(xtotal * (196.0/x)), (int)(xtotal * (196.0/x)),
+                     (int)(xtotal * (188.0/x)), (int)(xtotal * (150.0/x)),
+                     (int)(xtotal * (50.0/x)), (int)(xtotal * (12.0/x))};
+        
+        int[] ys1 = {(int)(ytotal * (60.0/y)), (int)(ytotal * (0.0/y)),
+                     (int)(ytotal * (0.0/y)), (int)(ytotal * (20.0/y)),
+                     (int)(ytotal * (20.0/y)), (int)(ytotal * (0.0/y)),
+                     (int)(ytotal * (0.0/y)), (int)(ytotal * (20.0/y)),
+                     (int)(ytotal * (20.0/y)), (int)(ytotal * (0.0/y)),
+                     (int)(ytotal * (0.0/y)), (int)(ytotal * (20.0/y)),
+                     (int)(ytotal * (20.0/y)), (int)(ytotal * (0.0/y)),
+                     (int)(ytotal * (0.0/y)), (int)(ytotal * (60.0/y)),
+                     (int)(ytotal * (60.0/y)), (int)(ytotal * (36.0/y)),
+                     (int)(ytotal * (36.0/y)), (int)(ytotal * (60.0/y))};
+        
+        Polygon top = new Polygon(xs1, ys1, 20);
+        
         g2.setColor(c1);
         g2.fill(platform);
         
         g2.setColor(c2);
         g2.draw(platform);
+        
+        g2.setColor(c3);
+        g2.fill(leftpost);
+        g2.fill(rightpost);
+        
+        g2.setColor(c4);
+        g2.draw(leftpost);
+        g2.draw(rightpost);
+        
+        g2.setColor(c5);
+        g2.fill(top);
+                
+        g2.setColor(c7);
+        g2.fillRect((int)(xtotal * (12.0/x)), (int)(ytotal * (152.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (148.0/y)));
+        
+        g2.setColor(c8);
+        g2.drawRect((int)(xtotal * (12.0/x)), (int)(ytotal * (152.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (148.0/y)));
         
     }
     
