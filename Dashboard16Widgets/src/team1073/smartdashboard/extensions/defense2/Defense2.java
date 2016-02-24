@@ -113,42 +113,6 @@ public class Defense2 extends StaticWidget {
             drawRoughTerrain(g2);
         }
         
-        /*if(value == 0) {
-            // nothing!
-        }
-        
-        else if(value == 1) {
-            drawPortcullis(g2);
-        }
-        
-        else if(value == 2) {
-            drawChevalDeFries(g2);
-        }
-        
-        else if(value == 3) {
-            drawMoat(g2);
-        }
-        
-        else if(value == 4) {
-            drawRamparts(g2);
-        }
-        
-        else if(value == 5) {
-            drawBridge(g2);
-        }
-        
-        else if(value == 6) {
-            drawSallyPort(g2);
-        }
-        
-        else if(value == 7) {
-            buildWall(g2);
-        }
-        
-        else if(value == 8) {
-            drawRoughTerrain(g2);
-        }*/
-        
     }
     
     public void drawPortcullis(Graphics2D g2) {
@@ -254,8 +218,8 @@ public class Defense2 extends StaticWidget {
         Rectangle fry3 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (236.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (40.0/y)));
         Rectangle fry4 = new Rectangle((int)(xtotal * (148.0/x)), (int)(ytotal * (236.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (40.0/y)));
         
-        Rectangle pipe1 = new Rectangle((int)(xtotal * (4.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (8.0/y)));
-        Rectangle pipe2 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle pipe1 = new Rectangle((int)(xtotal * (4.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle pipe2 = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (252.0/y)), (int)(xtotal * (48.0/x)), (int)(ytotal * (8.0/y)));
         
         g2.setColor(c1);
         g2.fill(platform);
@@ -329,8 +293,8 @@ public class Defense2 extends StaticWidget {
         Color c2 = new Color(126, 126, 126);    // platform outline
         
         Rectangle platform = new Rectangle(0, (int)(ytotal * (276.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (12.0/y)));
-        Rectangle leftpart = new Rectangle(((int)(xtotal * (4.0/x))), (int)(ytotal * (0.0/y)), (int)(xtotal * (96.0/x)), (int)(ytotal * (8.0/y)));
-        Rectangle rightpart = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (0.0/y)), (int)(xtotal * (96.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle leftpart = new Rectangle(((int)(xtotal * (4.0/x))), (int)(ytotal * (268.0/y)), (int)(xtotal * (96.0/x)), (int)(ytotal * (8.0/y)));
+        Rectangle rightpart = new Rectangle((int)(xtotal * (100.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (96.0/x)), (int)(ytotal * (8.0/y)));
         // 2" high
         g2.setColor(c1);
         g2.fill(platform);
@@ -409,10 +373,10 @@ public class Defense2 extends StaticWidget {
         g2.fill(top);
                 
         g2.setColor(c7);
-        g2.fillRect((int)(xtotal * (12.0/x)), (int)(ytotal * (152.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (148.0/y)));
+        g2.fillRect((int)(xtotal * (12.0/x)), (int)(ytotal * (128.0/y)), (int)(xtotal * (176.0/x)), (int)(ytotal * (148.0/y)));
         
         g2.setColor(c8);
-        g2.drawRect((int)(xtotal * (12.0/x)), (int)(ytotal * (152.0/y)), (int)(xtotal * (184.0/x)), (int)(ytotal * (148.0/y)));
+        g2.drawRect((int)(xtotal * (12.0/x)), (int)(ytotal * (128.0/y)), (int)(xtotal * (176.0/x)), (int)(ytotal * (148.0/y)));
         
     }
     
@@ -428,6 +392,8 @@ public class Defense2 extends StaticWidget {
         
         Color c1 = new Color(169, 169, 169);    // platform fill
         Color c2 = new Color(126, 126, 126);    // platform outline
+        Color c3 = new Color(83, 54, 47);       // door fill
+        Color c4 = new Color(48, 31, 27);
         
         Rectangle platform = new Rectangle(0, (int)(ytotal * (276.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (12.0/y)));
 
@@ -436,6 +402,12 @@ public class Defense2 extends StaticWidget {
         
         g2.setColor(c2);
         g2.draw(platform);
+        
+        g2.setColor(c3);
+        g2.fillRect(0, (int)(ytotal * (176.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (100.0/y)));
+     
+        g2.setColor(c4);
+        g2.drawRect(0, (int)(ytotal * (176.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (100.0/y)));
         
     }
     
@@ -453,7 +425,7 @@ public class Defense2 extends StaticWidget {
         Color c2 = new Color(126, 126, 126);    // platform outline
         
         Rectangle platform = new Rectangle(0, (int)(ytotal * (276.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (12.0/y)));
-        Rectangle wall = new Rectangle(0, (int)(ytotal * (266.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (10.0/y)));
+        Rectangle wall = new Rectangle(0, (int)(ytotal * (256.0/y)), (int)(xtotal * (200.0/x)), (int)(ytotal * (20.0/y)));
         
         g2.setColor(c1);
         g2.fill(platform);
@@ -486,10 +458,87 @@ public class Defense2 extends StaticWidget {
         g2.setColor(c2);
         g2.draw(platform);
         
-    }
-    
-    public void getHealth(double health, Graphics2D g2) {
+        // row 1
+        g2.setColor(c1);
+        g2.fillRect((int)(xtotal * (13.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (31.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (49.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (67.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (85.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (103.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (121.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (139.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (157.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (175.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
         
+        g2.setColor(c2);
+        g2.drawRect((int)(xtotal * (13.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (31.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (49.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (67.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (85.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (103.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (121.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (139.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (157.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (175.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        
+        
+        // row 2
+        g2.setColor(c1);
+        g2.fillRect((int)(xtotal * (4.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (22.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (40.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (58.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (76.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (94.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (112.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (130.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (148.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (166.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (184.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+
+        g2.setColor(c2);
+        g2.drawRect((int)(xtotal * (4.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (22.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (40.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (58.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (76.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (94.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (112.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (130.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (148.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (166.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (184.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        
+        // row 3
+        g2.setColor(c1);
+        g2.fillRect((int)(xtotal * (13.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (31.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (49.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (67.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (85.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (103.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.fillRect((int)(xtotal * (121.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (139.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.fillRect((int)(xtotal * (157.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.fillRect((int)(xtotal * (175.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        
+        g2.setColor(c2);
+        g2.drawRect((int)(xtotal * (13.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (31.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (49.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (67.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (85.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (103.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        g2.drawRect((int)(xtotal * (121.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (139.0/x)), (int)(ytotal * (272.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (4.0/y)));
+        g2.drawRect((int)(xtotal * (157.0/x)), (int)(ytotal * (268.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (8.0/y)));
+        g2.drawRect((int)(xtotal * (175.0/x)), (int)(ytotal * (264.0/y)), (int)(xtotal * (12.0/x)), (int)(ytotal * (12.0/y)));
+        
+        // blank
+        //g2.fillRect((int)(xtotal * (0.0/x)), (int)(ytotal * (0.0/y)), (int)(xtotal * (0.0/x)), (int)(ytotal * (0.0/y)));
+
     }
     
 }
