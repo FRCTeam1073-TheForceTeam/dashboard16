@@ -11,6 +11,8 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
@@ -30,6 +32,8 @@ public class Defense2 extends StaticWidget {
     JComboBox pickDefense = new JComboBox(defenses);
     //pickDefense.setBounds(new Rectangle(0, 0, 100, 40));
     //pickDefense.setVisible(true);
+    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    //SendableChooser defense1chooser = table.getObject("pickdefense1", defense1chooser);
     
     public Defense2() {
         

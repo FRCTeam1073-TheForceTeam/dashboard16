@@ -25,7 +25,6 @@ public class Blingalicious extends StaticWidget {
     public static final String NAME = "Blingalicious";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Blingalicious");
-
     
     public Blingalicious() {
         /*This constructor is only necessary for testing purposes*/
