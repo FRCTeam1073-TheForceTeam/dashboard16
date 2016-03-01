@@ -2,7 +2,7 @@
  * **HEADER**
  */
 package team1073.smartdashboard.extensions.defaultwidget;
-
+// lines 18 and 38 have instructions on what to do for testing the dashboard with the robot
 
 // make sure to IMPORT this stuff before coding stuff
 //import static edu.wpi.first.smartdashboard.gui.DashboardFrame.DisplayMode.SmartDashboard;
@@ -13,7 +13,8 @@ import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.*;
 
-//"extends Widget" is super-duper important
+// "extends Widget" is super-duper important
+// "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
 public class DefaultWidget extends StaticWidget {
     
     //cd C:\Program Files\SmartDashboard
@@ -33,6 +34,7 @@ public class DefaultWidget extends StaticWidget {
         
     }
     
+    // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
     ////////////@Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();

@@ -1,0 +1,19 @@
+/*
+A COMPLETE GUIDE TO THE WONDROUS WORLD OF SMARTDASHBOARD
+
+TO START
+1.  download dashboard16 off the git
+2.  make a folder in your C:\users\yourname called "SmartDashboard." then make a folder in that folder called "extensions." make a copy of the smartdashboard.jar file and put it in 
+	"SmartDashboard"
+3.  make a .batch file and save it out of the dashboard16 so it doesn't get destroyed with future dashboard updates
+    in this .batch file, type two lines:
+        copy /Y C:\Users\owner\team1073\dashboard16\Dashboard16Widgets\dist\Dashboard16Widgets.jar C:\Users\owner\team1073\dashboard16\Dashboard16Widgets\SmartDashboard\extensions
+	    copy /Y C:\Users\owner\team1073\dashboard16\Dashboard16Widgets\dist\Dashboard16Widgets.jar C:\Users\owner\SmartDashboard\extensions
+	but change them to your users\yourname\SmartDashboard\extensions folder and the extensions folder in the SmartDashboard folder in the Dashboard16Widgets folder
+4.  to test with the robot, change widget code according to instructions in the DefaultWidget
+5.  build the code. click the .batch file and open the dashboard
+6.  if no widgets appear on the dashboard, look at the current layout .jpeg. click "View" then select "Editable." then add the widgets with "View/add/pickwidget"
+7.  change back to non-editable
+8.  if you run the non-static widgets without a robot, the dashboard will crash
+9.  do not commit the code with the changes to static/@override
+*/
