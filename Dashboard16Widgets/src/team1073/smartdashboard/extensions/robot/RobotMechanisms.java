@@ -11,6 +11,7 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -25,6 +26,10 @@ public class RobotMechanisms extends StaticWidget {
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Robot Mechanisms");
 
+    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    double lauchElev = table.getNumber("lauchElev", 45.0);
+    double defManip = table.getNumber("defManip", 45.0);
+    boolean piston = table.getBoolean("piston", true);
     
     public RobotMechanisms() {
         /*This constructor is only necessary for testing purposes*/
@@ -67,11 +72,11 @@ public class RobotMechanisms extends StaticWidget {
         // will be in degrees
         //double laucherangle = 45.0;
         
-        //drawLaucher(laucherangle, g2);
+        drawLaucher(lauchElev, g2);
         
         drawRobot(g2);
         
-        drawDefenseManipulator(45.0, true, g2);
+        drawDefenseManipulator(defManip, true, g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
@@ -148,8 +153,8 @@ public class RobotMechanisms extends StaticWidget {
         double cosangle = Math.cos(Math.toRadians(angle));
         double sinangle = Math.sin(Math.toRadians(angle));
         
-        g2.drawLine(0, 200, 200, 200);
-        g2.drawLine(384, 384, (int)(xtotal - (100.0 * cosangle)), (int)(ytotal - (100.0 * sinangle)));
+        //g2.drawLine(0, 200, 200, 200);
+        g2.drawLine(284, 276, (int)(284.0 - (100.0 * cosangle)), (int)((276.0) - (100.0 * sinangle)));
         
     }
     
@@ -192,7 +197,7 @@ public class RobotMechanisms extends StaticWidget {
          3&4 direct trig values
         */
         
-        int[] xs1 = {(int)(xpos1 - (60.0 * cosangle) + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))), (int)(xpos1 + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))),
+        /*int[] xs1 = {(int)(xpos1 - (60.0 * cosangle) + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))), (int)(xpos1 + (8.0 * (Math.cos(Math.toRadians(angle + 90.0))))),
                      (int)xpos1, (int)(xpos1 - (60.0 * cosangle))};
         int[] ys1 = {(int)(ypos1 - (60.0 * sinangle) - (8.0 * (Math.sin(Math.toRadians(angle + 90.0))))), (int)(ypos1 - (8.0 * (Math.sin(Math.toRadians(angle + 90.0))))),
                      (int)ypos1, (int)(ypos1 - (60.0 * sinangle))};
@@ -200,7 +205,7 @@ public class RobotMechanisms extends StaticWidget {
         Polygon defenseArm = new Polygon(xs1, ys1, 4);
         g2.setColor(Color.GRAY);
         //g2.fill(defenseArm);hi
-        g2.fill(defenseArm);
+        g2.fill(defenseArm);*/
         
     }
     
