@@ -179,7 +179,7 @@ public class RobotMechanisms extends StaticWidget {
         double cosangle = Math.cos(Math.toRadians(angle));
         
         g2.setColor(Color.RED);
-        g2.drawLine((int)(xpos1 - 60.0), 10, (int)(xpos1 - 60.0), 400);
+        g2.drawLine((int)(xpos1 - 60.0), 200, (int)(xpos1 - 60.0), 400);
         
         // works
         g2.setColor(Color.BLACK);
