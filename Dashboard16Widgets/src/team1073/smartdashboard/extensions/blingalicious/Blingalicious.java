@@ -3,9 +3,7 @@
  */
 package team1073.smartdashboard.extensions.blingalicious;
 
-
 // make sure to IMPORT this stuff before coding stuff
-//import static edu.wpi.first.smartdashboard.gui.DashboardFrame.DisplayMode.SmartDashboard;
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
@@ -18,9 +16,6 @@ import javax.swing.JSlider;
 //"extends Widget" is super-duper important
 public class Blingalicious extends StaticWidget {
     
-    //cd C:\Program Files\SmartDashboard
-    //java -jar SmartDashboard.jar
-    
     public static final DataType[] TYPES = {DataType.NUMBER};
     public static final String NAME = "Blingalicious";
     private int value = -1;
@@ -28,10 +23,6 @@ public class Blingalicious extends StaticWidget {
     
     public Blingalicious() {
         /*This constructor is only necessary for testing purposes*/
-        //sets different options for different stuff on the dashboard
-        
-        mode.add("nothing!", 0);
-        
     }
     
     ////////////@Override
@@ -69,23 +60,6 @@ public class Blingalicious extends StaticWidget {
         Graphics2D g2 = (Graphics2D)g;
         //makes it less pixely
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Dimension size = getSize();
-        //allows g2.drawings to scale if(x&yvalues == %%)
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
-        //establish default colors
-        Color c1 = new Color(255, 255, 255);    //a color
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
-        
-    }
-    private void drawStuff(Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
         
     }
     

@@ -5,7 +5,6 @@ package team1073.smartdashboard.extensions.battery;
 
 
 // make sure to IMPORT this stuff before coding stuff
-//import static edu.wpi.first.smartdashboard.gui.DashboardFrame.DisplayMode.SmartDashboard;
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
@@ -17,21 +16,13 @@ import java.awt.geom.*;
 //"extends Widget" is super-duper important
 public class Battery extends StaticWidget {
     
-    //cd C:\Program Files\SmartDashboard
-    //java -jar SmartDashboard.jar
-    
     public static final DataType[] TYPES = {DataType.NUMBER};
     public static final String NAME = "Battery";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Battery Percent");
 
-    
     public Battery() {
         /*This constructor is only necessary for testing purposes*/
-        //sets different options for different stuff on the dashboard
-        
-        mode.add("nothing!", 0);
-        
     }
     
     ////////////@Override
@@ -63,10 +54,6 @@ public class Battery extends StaticWidget {
         Color c1 = new Color(255, 255, 255);    //a color
         
         drawBattery(0.5, g2);
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
         
     }
     private void drawBattery(double percentPower, Graphics2D g2) {

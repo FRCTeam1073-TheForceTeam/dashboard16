@@ -1,14 +1,9 @@
 /*
  * **HEADER**
-
  * "todo" extends Widget & uncomment out override (line 43)
-
  */
 package team1073.smartdashboard.extensions.livemap;
 
-
-// make sure to IMPORT this stuff before coding stuff
-//import static edu.wpi.first.smartdashboard.gui.DashboardFrame.DisplayMode.SmartDashboard;
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
@@ -24,12 +19,7 @@ import team1073.smartdashboard.extensions.defense4.Defense4;
 import team1073.smartdashboard.extensions.defense5.Defense5;
 
 //"extends Widget" is super-duper important
-// google todo
-// change to "extends Widget" to test with Robot
 public class LiveMapping extends StaticWidget {
-    
-    //cd C:\Program Files\SmartDashboard
-    //java -jar SmartDashboard.jar
     
     public static final DataType[] TYPES = {DataType.NUMBER};
     public static final String NAME = "LiveMapping";
@@ -42,14 +32,8 @@ public class LiveMapping extends StaticWidget {
     
     public LiveMapping() {
         /*This constructor is only necessary for testing purposes*/
-        //sets different options for different stuff on the dashboard
-        
-        mode.add("nothing!", 0);
-        
     }
     
-    
-    // uncomment out this override
     ////////////@Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
@@ -79,12 +63,7 @@ public class LiveMapping extends StaticWidget {
         //establish default colors
         
         drawMap(g2);
-        
         drawRobot(xcRobot, ycRobot, g2);
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
         
     }
     
@@ -100,7 +79,6 @@ public class LiveMapping extends StaticWidget {
         Color c1 = new Color(204, 204, 204);    // steel gray
         Color c2 = new Color(95, 95, 91);       // outline
         
-        //Rectangle platform1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)));
         Rectangle platform = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 12.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
         Rectangle ramp1 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 0.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12.0/y)));
         Rectangle ramp2 = new Rectangle((int)(xtotal * ((dx + 0.0)/x)), (int)(ytotal * ((dy + 36.0)/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (12./y)));
@@ -113,66 +91,9 @@ public class LiveMapping extends StaticWidget {
         g2.setColor(c2);
         g2.draw(platform);
         g2.draw(ramp1);
-        g2.draw(ramp2);
-                
+        g2.draw(ramp2);    
         
     }
-    
-    /*public void inputDefense(int defense, double xc, double yc, Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
-        // 1 pixel = 1"
-        double x = 319; // 26' 7"
-        double y = 649; // 54' 1"
-        
-        if(defense == 1) {
-            g2.setColor(new Color(255, 0, 0));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
-        }
-        
-        if(defense == 2) {
-            g2.setColor(new Color(255, 255, 0));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * (50.0/x)), (int)(ytotal * (24.0/y)));
-        }
-        
-        if(defense == 3) {
-            g2.setColor(new Color(255, 0, 255));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 4) {
-            g2.setColor(new Color(255, 0, 0));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 5) {
-            g2.setColor(new Color(255, 255, 255));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 6) {
-            g2.setColor(new Color(255, 0, 255));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 7) {
-            g2.setColor(new Color(100, 0, 255));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 8) {
-            g2.setColor(new Color(0, 0, 255));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-        if(defense == 9) {
-            g2.setColor(new Color(0, 0, 0));
-            g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
-        }
-        
-    }*/
     
     private void drawRobot(double xc, double yc, Graphics2D g2) {
         
@@ -289,9 +210,6 @@ public class LiveMapping extends StaticWidget {
         g2.setColor(c6);
         g2.draw(castle1);
         g2.draw(castle2);
-        
-        /*Color c4 = new Color(223, 41, 43);      // sp red
-        Color c5 = new Color(16, 87, 239);      // sp blue*/
         
         if(AllianceColor.allianceTeam == "blue") {
             g2.setColor(c5);
