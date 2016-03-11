@@ -34,6 +34,8 @@ public class Defense2 extends StaticWidget {
     ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
     //SendableChooser defense1chooser = table.getObject("pickdefense1", defense1chooser);
     
+    public static String defense2 = "";
+    
     public Defense2() {
         
         /*mode.add("nothing!", 0);
@@ -78,6 +80,8 @@ public class Defense2 extends StaticWidget {
         double ytotal = size.getHeight();
         double x = 200;
         double y = 288.0;        
+        
+        defense2 = (String)pickDefense.getSelectedItem();
         
         //drawBridge(g2);
         if(pickDefense.getSelectedItem() == "nothing!") {

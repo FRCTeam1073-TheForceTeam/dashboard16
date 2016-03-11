@@ -31,6 +31,8 @@ public class Defense5 extends StaticWidget {
     //pickDefense.setBounds(new Rectangle(0, 0, 100, 40));
     //pickDefense.setVisible(true);
     
+    public static String defense5 = "";
+    
     public Defense5() {
         
         /*mode.add("nothing!", 0);
@@ -74,7 +76,9 @@ public class Defense5 extends StaticWidget {
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
         double x = 200;
-        double y = 288.0;        
+        double y = 288.0;
+        
+        defense5 = (String)pickDefense.getSelectedItem();
         
         //drawBridge(g2);
         if(pickDefense.getSelectedItem() == "nothing!") {

@@ -17,6 +17,11 @@ import edu.wpi.first.smartdashboard.types.DataType;
 import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 import java.util.Random;
+import team1073.smartdashboard.extensions.alliance.AllianceColor;
+import team1073.smartdashboard.extensions.defense2.Defense2;
+import team1073.smartdashboard.extensions.defense3.Defense3;
+import team1073.smartdashboard.extensions.defense4.Defense4;
+import team1073.smartdashboard.extensions.defense5.Defense5;
 
 //"extends Widget" is super-duper important
 // google todo
@@ -109,10 +114,11 @@ public class LiveMapping extends StaticWidget {
         g2.draw(platform);
         g2.draw(ramp1);
         g2.draw(ramp2);
+                
         
     }
     
-    public void inputDefense(int defense, double xc, double yc, Graphics2D g2) {
+    /*public void inputDefense(int defense, double xc, double yc, Graphics2D g2) {
         
         Dimension size = getSize();
         double xtotal = size.getWidth();
@@ -166,7 +172,7 @@ public class LiveMapping extends StaticWidget {
             g2.fillRect((int)(xtotal * (xc/x)), (int)(ytotal * (yc/y)), (int)(xtotal * ((xc + 50.0)/x)), (int)(ytotal * ((yc + 24.0)/y)));
         }
         
-    }
+    }*/
     
     private void drawRobot(double xc, double yc, Graphics2D g2) {
         
@@ -264,10 +270,15 @@ public class LiveMapping extends StaticWidget {
         g2.draw(secretpassage2);
         
         drawPlatform(0.0, 192.0, g2);
+        g2.drawString("low bar", 5, 220);
         drawPlatform(50.0, 192.0, g2);
+        g2.drawString(Defense2.defense2, 55, 220);
         drawPlatform(100.0, 192.0, g2);
+        g2.drawString(Defense3.defense3, 105, 220);
         drawPlatform(150.0, 192.0, g2);
+        g2.drawString(Defense4.defense4, 155, 220);
         drawPlatform(200.0, 192.0, g2);
+        g2.drawString(Defense5.defense5, 205, 220);
         
         drawPlatform(69.0, 410.0, g2);
         drawPlatform(119.0, 410.0, g2);
@@ -279,9 +290,28 @@ public class LiveMapping extends StaticWidget {
         g2.draw(castle1);
         g2.draw(castle2);
         
-        g2.setColor(c7);
-        g2.fill(castle1top);
-        g2.fill(castle2top);
+        /*Color c4 = new Color(223, 41, 43);      // sp red
+        Color c5 = new Color(16, 87, 239);      // sp blue*/
+        
+        if(AllianceColor.allianceTeam == "blue") {
+            g2.setColor(c5);
+            g2.fill(castle2top);
+            g2.setColor(c4);
+            g2.fill(castle1top);
+        }
+        
+        else if(AllianceColor.allianceTeam == "red") {
+            g2.setColor(c4);
+            g2.fill(castle2top);
+            g2.setColor(c5);
+            g2.fill(castle1top);
+        }
+        
+        else {
+            g2.setColor(c7);
+            g2.fill(castle1top);
+            g2.fill(castle2top);
+        }
         
         g2.setColor(c8);
         
