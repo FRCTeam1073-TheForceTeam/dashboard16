@@ -10,6 +10,7 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
+import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -20,7 +21,10 @@ public class Battery extends StaticWidget {
     public static final String NAME = "Battery";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Battery Percent");
-
+    
+    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    double batPer = (int)(table.getNumber("batteryPercent", .5));
+    
     public Battery() {
         /*This constructor is only necessary for testing purposes*/
     }
@@ -53,7 +57,7 @@ public class Battery extends StaticWidget {
         //establish default colors
         Color c1 = new Color(255, 255, 255);    //a color
         
-        drawBattery(0.5, g2);
+        drawBattery(batPer, g2);
         
     }
     private void drawBattery(double percentPower, Graphics2D g2) {
