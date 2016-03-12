@@ -23,7 +23,7 @@ public class Battery extends StaticWidget {
     public final MultiProperty mode = new MultiProperty(this, "Battery Percent");
     
     ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
-    double batPer = (int)(table.getNumber("batteryPercent", .5));
+    double batPer = (table.getNumber("batteryPercent", .5));
     
     public Battery() {
         /*This constructor is only necessary for testing purposes*/
@@ -60,6 +60,7 @@ public class Battery extends StaticWidget {
         drawBattery(batPer, g2);
         
     }
+    
     private void drawBattery(double percentPower, Graphics2D g2) {
         
         Dimension size = getSize();
