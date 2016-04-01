@@ -24,7 +24,7 @@ void loop() {
   helladankfirework(0, 0, 127);
   rainbowflow();
   randomcolor(0, 0, 0, 40, 0, 100, 10);
-  randomcolor(0, 100, 0, 20, 0, 100, 10);
+  randomcolor(0, 100, 0, 20, 0, 0, 10);
   randomfizzle(127, 0, 0, true, 0);
   randomfizzle(127, 127, 127, true, 0);
   randomfizzle(0, 0, 127, true, 0);
