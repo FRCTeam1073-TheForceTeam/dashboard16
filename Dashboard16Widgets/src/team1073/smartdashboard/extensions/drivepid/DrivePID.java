@@ -1,7 +1,7 @@
 /*
  * **HEADER**
  */
-package team1073.smartdashboard.extensions.crosshair;
+package team1073.smartdashboard.extensions.drivepid;
 // lines 18 and 38 have instructions on what to do for testing the dashboard with the robot
 
 // make sure to IMPORT this stuff before coding stuff
@@ -12,21 +12,22 @@ import edu.wpi.first.smartdashboard.properties.MultiProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class Crosshair extends StaticWidget {
+public class DrivePID extends StaticWidget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
     
     public static final DataType[] TYPES = {DataType.NUMBER};
-    public static final String NAME = "Crosshair";
+    public static final String NAME = "DrivePID";
     private int value = -1;
-    public final MultiProperty mode = new MultiProperty(this, "Crosshair");
-
+    public final MultiProperty mode = new MultiProperty(this, "DrivePID");
+    boolean isPID = false;
     
-    public Crosshair() {
+    public DrivePID() {
         /*This constructor is only necessary for testing purposes*/
         //sets different options for different stuff on the dashboard
         
@@ -43,7 +44,7 @@ public class Crosshair extends StaticWidget {
 
     @Override
     public void init() {
-        setPreferredSize(new Dimension(40, 40));
+        setPreferredSize(new Dimension(300, 50));
     }
 
     @Override
@@ -61,32 +62,35 @@ public class Crosshair extends StaticWidget {
         //allows g2.drawings to scale if(x&yvalues == %%)
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
-        //establish default colors
-        Color c1 = new Color(255, 255, 255);    //a color
-        
-        drawCrosshair(g2);
         
         if(value == 0) {
             //mode.add("nothing!", 0);
         }
         
+        //establish default colors
+        Color c1 = new Color(0, 0, 0);    //a color
+        //GradientPaint gp = new GradientPaint(0, 0, c2, size.width/2, 0, c3);
+        String num = ""+value;
+        
+        //g2.setPaint(gp);
+        //g2.fill(new Rectangle2D.Double(0, 0, size.width, size.height));
+        g2.setPaint(c1);
+        g2.setFont(new Font("Default", Font.BOLD, 18));
+        g2.drawString("Drive Train PID:  " + isPID, 0, size.height - 1);
+        
+        //g2.drawString(num, 0, size.height-1);
+        //g2.setFont(new Font ("default", Font.BOLD, 12));
+        //g2.drawString("totes", 60, size.height-1);
+        
+        
+        
     }
-    private void drawCrosshair(Graphics2D g2) {
+    private void drawStuff(Graphics2D g2) {
         
         Dimension size = getSize();
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
         
-        // 40 X 40
-        double x = 40.0;
-        double y = 40.0;
-        
-        Color c1 = new Color(255, 0, 0);
-        g2.setColor(c1);
-        
-        g2.fillRect((int)(xtotal * (17.0/x)), 0, (int)(xtotal * (6.0/x)), (int)(ytotal * (40.0/x)));
-        g2.fillRect(0, (int)(ytotal * (17.0/y)), (int)(xtotal * (40.0/x)), (int)(ytotal * (6.0/x)));
-
     }
     
 }

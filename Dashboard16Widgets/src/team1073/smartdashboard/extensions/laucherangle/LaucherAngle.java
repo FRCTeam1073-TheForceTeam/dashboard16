@@ -25,7 +25,7 @@ public class LaucherAngle extends StaticWidget {
     public static final String NAME = "Laucher";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Laucher");
-
+    double lauchElev = 45.0;
     
     public LaucherAngle() {
         /*This constructor is only necessary for testing purposes*/
@@ -44,7 +44,7 @@ public class LaucherAngle extends StaticWidget {
 
     @Override
     public void init() {
-        setPreferredSize(new Dimension(200, 50));
+        setPreferredSize(new Dimension(300, 50));
     }
 
     @Override
@@ -75,8 +75,10 @@ public class LaucherAngle extends StaticWidget {
         //g2.setPaint(gp);
         //g2.fill(new Rectangle2D.Double(0, 0, size.width, size.height));
         g2.setPaint(c1);
-        g2.setFont(new Font("Default", Font.BOLD, 36));
-        g2.drawString(num, 0, size.height-1);
+        g2.setFont(new Font("Default", Font.BOLD, 18));
+        g2.drawString("Laucher Angle:  " + lauchElev, 0, size.height - 1);
+        
+        //g2.drawString(num, 0, size.height-1);
         //g2.setFont(new Font ("default", Font.BOLD, 12));
         //g2.drawString("totes", 60, size.height-1);
         

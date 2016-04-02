@@ -1,7 +1,7 @@
 #include "LPD8806.h"
 #include "SPI.h"
 
-int nLEDs = 18;
+int nLEDs = 64;
 
 LPD8806 strip = LPD8806(nLEDs);
 
@@ -12,24 +12,22 @@ void setup() {
   strip.show();
 }
 
-uint32_t colors[] = {strip.Color(0, 0, 127), strip.Color(127, 127, 127), strip.Color(100, 20, 0)};
+uint32_t colors[] = {strip.Color(0, 127, 0), strip.Color(127, 127, 127), strip.Color(100, 20, 0)};
 
 void loop() {
   // put your main code here, to run repeatedly:
   explode(50);
   carnival(colors, 3, 2);
-  flow(0, 0, 127);
-  flow(100, 20, 0);
-  helladankfirework(100, 20, 0);
-  helladankfirework(0, 0, 127);
+  flow(0, 127, 0);
+  flow(100, 0, 20);
+  helladankfirework(100, 0, 20);
+  helladankfirework(0, 127, 0);
   rainbowflow();
-  randomcolor(0, 0, 0, 40, 0, 100, 10);
-  randomcolor(0, 100, 0, 20, 0, 0, 10);
-  explode(50);
-  randomfizzle(100, 20, 0, true, 0);
-  randomfizzle(0, 0, 127, true, 0);
-  randomfizzle(100, 200, 0, true, 0);
-  randomfizzle(0, 0, 127, true, 0);
+  randomcolor(0, 0, 0, 100, 0, 40, 10);
+  randomcolor(0, 100, 0, 0, 0, 20, 10);
+  randomfizzle(127, 0, 0, true, 0);
+  randomfizzle(127, 127, 127, true, 0);
+  randomfizzle(0, 127, 0, true, 0);
 }
 
 
