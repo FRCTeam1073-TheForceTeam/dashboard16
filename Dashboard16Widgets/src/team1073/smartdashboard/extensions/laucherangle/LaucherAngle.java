@@ -16,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class LaucherAngle extends StaticWidget {
+public class LaucherAngle extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
@@ -36,9 +36,10 @@ public class LaucherAngle extends StaticWidget {
     }
     
     // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
+        lauchElev = value;
         repaint();
     }
 
@@ -77,19 +78,6 @@ public class LaucherAngle extends StaticWidget {
         g2.setPaint(c1);
         g2.setFont(new Font("Default", Font.BOLD, 18));
         g2.drawString("Laucher Angle:  " + lauchElev, 0, size.height - 1);
-        
-        //g2.drawString(num, 0, size.height-1);
-        //g2.setFont(new Font ("default", Font.BOLD, 12));
-        //g2.drawString("totes", 60, size.height-1);
-        
-        
-        
-    }
-    private void drawStuff(Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
         
     }
     

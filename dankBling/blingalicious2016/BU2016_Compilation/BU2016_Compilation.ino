@@ -1,7 +1,7 @@
 #include "LPD8806.h"
 #include "SPI.h"
 
-int nLEDs = 18;
+int nLEDs = 36;
 
 LPD8806 strip = LPD8806(nLEDs);
 
@@ -20,8 +20,6 @@ void loop() {
   carnival(colors, 3, 2);
   flow(0, 0, 127);
   flow(100, 20, 0);
-  helladankfirework(100, 20, 0);
-  helladankfirework(0, 0, 127);
   rainbowflow();
   randomcolor(0, 0, 0, 40, 0, 100, 10);
   randomcolor(0, 100, 0, 20, 0, 0, 10);
@@ -30,6 +28,12 @@ void loop() {
   randomfizzle(0, 0, 127, true, 0);
   randomfizzle(100, 200, 0, true, 0);
   randomfizzle(0, 0, 127, true, 0);
+  randomfizzle(100, 20, 0, true, 0);
+  randomfizzle(0, 0, 127, true, 0);
+  randomfizzle(100, 200, 0, true, 0);
+  randomfizzle(0, 0, 127, true, 0);
+  boom(0, 0, 127);
+  boom(100, 20, 0);
 }
 
 
@@ -98,6 +102,56 @@ void randomcolor(int r0, int r1, int g0, int g1, int b0, int b1, int iterations)
 }
 
 
+void boom(int red, int green, int blue) {
+  
+  for(int i = 0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(i, 0);
+  }
+  
+  int r = red; int g = green; int b = blue;
+  int rInc = r / 10; int gInc = g / 10; int bInc = b / 10;
+  int wait = 50;
+  
+  uint32_t c = strip.Color(r, g, b);
+  int count = 0;
+  boolean up = false;
+  
+  for(int i = 0; i < strip.numPixels() / 2; i++) {
+    r = red; g = green; b = blue;
+    c = strip.Color(r, g, b);
+    
+    for(int j = i; j >= 0; j--) {
+      
+      strip.setPixelColor((strip.numPixels() / 2) + j, c);
+      strip.setPixelColor((strip.numPixels() / 2) - j, c);
+      
+      if(r >= red && g >= green && b >= blue) {
+        up = false;
+        r = red; g = green; b = blue;
+      }
+      else if(r <= (red / 10) && g <= (green / 10) && b <= (blue /10)) {
+        up = true;
+        r = (red / 10); g = (green / 10); b = (blue / 10);
+      }
+      
+      if(up == false) {
+        r-=rInc; g-=gInc; b-=bInc;
+      }
+      else if(up == true) {
+        r+=rInc; g+=gInc; b+=bInc;
+      }
+      
+      c = strip.Color(r, g, b);
+      
+    }
+    strip.show();
+    delay(wait);
+    
+  }
+  
+}
+
+
 void carnival(uint32_t colors[], int numColors, int rotations) {
   
   boolean direct = true;
@@ -111,29 +165,27 @@ void carnival(uint32_t colors[], int numColors, int rotations) {
   
   for(int i = 0; i < numColors * rotations; i++) {
     
-    int j = 0;
-    if(i > numColors) {
-      j = numColors - i;
+    int c = i;
+    while(c >= numColors) {
+      c-=numColors;
     }
     
     if(direct == true) {
       for(int j = 0; j < pixels; j+=2) {
-        strip.setPixelColor(j, colors[i - j]);
+        strip.setPixelColor(j, colors[c]);
         strip.show();
         delay(50);
         direct = false;
       }
-      strip.show();
     }
     
-    else if(direct == false) {
-      for(int k = pixels - 1; k > 0; k-=2) {
-        strip.setPixelColor(k, colors[i - j]);
+    else {
+      for(int k = pixels + 1; k > 0; k-=2) {
+        strip.setPixelColor(k, colors[c]);
         strip.show();
         delay(50);
         direct = true;
       }
-      strip.show();
     }
     
   }
@@ -261,291 +313,6 @@ void flow(int r, int g, int b) {
   
 }
 
-void helladankfirework(int r, int g, int b) {
-  
-  // shoot firework
-  //int boom = 2 * (strip.numPixels() / 3);
-  int boom = random(strip.numPixels() / 3, 2 * (strip.numPixels() / 3));
-  //int boomdis = 10;
-  int boomdis = random(10, 15);
-  int wait = 50;
-  
-  uint32_t w100 = strip.Color(r, g, b);
-  uint32_t w90 = strip.Color((9 * (r / 10)), (9 * (g / 10)), (9 * (b / 10)));
-  uint32_t w80 = strip.Color((8 * (r / 10)), (8 * (g / 10)), (8 * (b / 10)));
-  uint32_t w70 = strip.Color((7 * (r / 10)), (7 * (g / 10)), (7 * (b / 10)));
-  uint32_t w60 = strip.Color((6 * (r / 10)), (6 * (g / 10)), (6 * (b / 10)));
-  uint32_t w50 = strip.Color((5 * (r / 10)), (5 * (g / 10)), (5 * (b / 10)));
-  uint32_t w40 = strip.Color((4 * (r / 10)), (4 * (g / 10)), (4 * (b / 10)));
-  uint32_t w30 = strip.Color((3 * (r / 10)), (3 * (g / 10)), (3 * (b / 10)));
-  uint32_t w20 = strip.Color((2 * (r / 10)), (2 * (g / 10)), (2 * (b / 10)));
-  uint32_t w10 = strip.Color((r / 10), (g / 10), (b / 10));
-  uint32_t w5 = strip.Color((r / 20), (g / 20), (b / 20));
-  
-  for(int i = 0; i < strip.numPixels(); i++) {
-    strip.setPixelColor(i, 0);
-  }
-  
-  for(int i = 0; i < boom + 10; i++) {
-    
-    if(i < boom)
-      strip.setPixelColor(i, w100);
-    if(i - 1 < boom)
-      strip.setPixelColor(i - 1, w90);
-    if(i - 2 < boom)
-      strip.setPixelColor(i - 2, w80);
-    if(1 - 3 < boom)
-      strip.setPixelColor(i - 3, w70);
-    if(i - 4 < boom)
-      strip.setPixelColor(i - 4, w60);
-    if(i - 5 < boom)
-      strip.setPixelColor(i - 5, w50);
-    if(i - 6 < boom)
-      strip.setPixelColor(i - 6, w40);
-    if(i - 7 < boom)
-      strip.setPixelColor(i - 7, w30);
-    if(i - 8 < boom)
-      strip.setPixelColor(i - 8, w20);
-    if(i - 9 < boom)
-      strip.setPixelColor(i - 9, w10);
-    if(i - 10 < boom)
-      strip.setPixelColor(i - 10, 0);
-      
-    for(int j = boom; j < boom + 10; j++) {
-      strip.setPixelColor(j, 0);
-    }
-    
-    strip.show();
-    delay(wait);
-    
-  }
-  
-  strip.show();
-  
-  strip.setPixelColor(boom, w100);
-  
-  strip.show();
-  delay(50);
-  
-  strip.setPixelColor(boom - 1, w100);
-  strip.setPixelColor(boom, w80);
-  
-  strip.setPixelColor(boom + 1, w100);
-  
-  strip.show();
-  delay(50);
-  
-  strip.setPixelColor(boom - 2, w100);
-  strip.setPixelColor(boom - 1, w80);
-  strip.setPixelColor(boom, w60);
-  
-  strip.setPixelColor(boom + 2, w100);
-  strip.setPixelColor(boom + 1, w80);
-  
-  strip.show();
-  delay(50);
-  
-  strip.setPixelColor(boom - 3, w100);
-  strip.setPixelColor(boom - 2, w80);
-  strip.setPixelColor(boom - 1, w60);
-  strip.setPixelColor(boom, w40);
-  
-  strip.setPixelColor(boom + 3, w100);
-  strip.setPixelColor(boom + 2, w80);
-  strip.setPixelColor(boom + 1, w60);
-  
-  strip.show();
-  delay(50);
-  
-  strip.setPixelColor(boom - 4, w100);
-  strip.setPixelColor(boom - 3, w80);
-  strip.setPixelColor(boom - 2, w60);
-  strip.setPixelColor(boom - 1, w40);
-  strip.setPixelColor(boom, w20);
-  
-  strip.setPixelColor(boom + 4, w100);
-  strip.setPixelColor(boom + 3, w80);
-  strip.setPixelColor(boom + 2, w60);
-  strip.setPixelColor(boom + 1, w40);
-  
-  strip.show();
-  delay(50);
-  
-  strip.setPixelColor(boom - 5, w100);
-  strip.setPixelColor(boom - 4, w80);
-  strip.setPixelColor(boom - 3, w60);
-  strip.setPixelColor(boom - 2, w40);
-  strip.setPixelColor(boom - 1, w20);
-  strip.setPixelColor(boom, 0);
-  
-  strip.setPixelColor(boom + 5, w100);
-  strip.setPixelColor(boom + 4, w80);
-  strip.setPixelColor(boom + 3, w60);
-  strip.setPixelColor(boom + 2, w40);
-  strip.setPixelColor(boom + 1, w20);
-  
-  strip.show();
-  delay(50);
-  
-  for(int i = 6; i < boomdis; i++) {
-    
-    uint32_t white = strip.Color(120, 120, 120);
-    
-    // i is the greatest distance from boom and i is less than boomdis
-    strip.setPixelColor(boom - i, w100);
-    strip.setPixelColor(boom - (i - 1), w80);
-    strip.setPixelColor(boom - (i - 2), w60);
-    strip.setPixelColor(boom - (i - 3), w40);
-    strip.setPixelColor(boom - (i - 4), w20);
-    strip.setPixelColor(boom - (i - 5), 0);
-     
-    strip.setPixelColor(boom + i, w100);
-    strip.setPixelColor(boom + (i - 1), w80);
-    strip.setPixelColor(boom + (i - 2), w60);
-    strip.setPixelColor(boom + (i - 3), w40);
-    strip.setPixelColor(boom + (i - 4), w20);
-    strip.setPixelColor(boom + (i - 5), 0);
-    
-    strip.show();
-    delay(50);
-    
-    strip.setPixelColor(i, 0);
-    strip.setPixelColor(strip.numPixels() - i, 0);
-    
-  }
-  
-  strip.show();
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis - 1), w80);
-  strip.setPixelColor(boom - (boomdis - 2), w60);
-  strip.setPixelColor(boom - (boomdis - 3), w40);
-  strip.setPixelColor(boom - (boomdis - 4), 0);
-     
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + (boomdis - 1), w80);
-  strip.setPixelColor(boom + (boomdis - 2), w60);
-  strip.setPixelColor(boom + (boomdis - 3), w40);
-  strip.setPixelColor(boom + (boomdis - 4), 0);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  
-  strip.show();
-  delay(wait);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis - 1), w80);
-  strip.setPixelColor(boom - (boomdis - 2), w60);
-  strip.setPixelColor(boom - (boomdis - 3), 0);
-     
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + (boomdis - 1), w80);
-  strip.setPixelColor(boom + (boomdis - 2), w60);
-  strip.setPixelColor(boom + (boomdis - 3), 0);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + boomdis + 1, w90);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis + 1), w90);
-  
-  strip.show();
-  delay(wait);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis - 1), w80);
-  strip.setPixelColor(boom - (boomdis - 2), 0);
-     
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + (boomdis - 1), w80);
-  strip.setPixelColor(boom + (boomdis - 2), 0);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + boomdis + 1, w90);
-  strip.setPixelColor(boom + boomdis + 2, w50);
-  strip.setPixelColor(boom + boomdis + 3, w80);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis + 1), w90);
-  strip.setPixelColor(boom - (boomdis + 2), w50);
-  strip.setPixelColor(boom - (boomdis + 3), w80);
-  
-  strip.show();
-  delay(wait);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis - 1), 0);
-     
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + (boomdis - 1), 0);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + boomdis + 1, w90);
-  strip.setPixelColor(boom + boomdis + 2, w50);
-  strip.setPixelColor(boom + boomdis + 3, w80);
-  strip.setPixelColor(boom + (boomdis + 4), w70);
-  
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis + 1), w90);
-  strip.setPixelColor(boom - (boomdis + 2), w50);
-  strip.setPixelColor(boom - (boomdis + 3), w80);
-  strip.setPixelColor(boom - (boomdis + 4), w70);
-  
-  strip.show();
-  delay(wait);
-  
-  strip.setPixelColor(boom - boomdis, 0);
-  
-  strip.setPixelColor(boom + boomdis, 0);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + boomdis + 1, w90);
-  strip.setPixelColor(boom + boomdis + 2, w50);
-  strip.setPixelColor(boom + boomdis + 3, w80);
-  strip.setPixelColor(boom + (boomdis + 4), w70);
-  strip.setPixelColor(boom - (boomdis + 5), w50);
-
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis + 1), w90);
-  strip.setPixelColor(boom - (boomdis + 2), w50);
-  strip.setPixelColor(boom - (boomdis + 3), w80);
-  strip.setPixelColor(boom - (boomdis + 4), w70);
-  strip.setPixelColor(boom - (boomdis + 5), w50);
-  //strip.setPixelColor(boom - (boomdis + 6), w20);
-  
-  strip.show();
-  delay(wait);
-  
-  strip.setPixelColor(boom + boomdis, w100);
-  strip.setPixelColor(boom + boomdis + 1, w90);
-  strip.setPixelColor(boom + boomdis + 2, w50);
-  strip.setPixelColor(boom + boomdis + 3, w80);
-  strip.setPixelColor(boom + (boomdis + 4), w70);
-  strip.setPixelColor(boom - (boomdis + 5), w50);
-  strip.setPixelColor(boom - (boomdis + 6), w20);
-
-  strip.setPixelColor(boom - boomdis, w100);
-  strip.setPixelColor(boom - (boomdis + 1), w90);
-  strip.setPixelColor(boom - (boomdis + 2), w50);
-  strip.setPixelColor(boom - (boomdis + 3), w80);
-  strip.setPixelColor(boom - (boomdis + 4), w70);
-  strip.setPixelColor(boom - (boomdis + 5), w50);
-  strip.setPixelColor(boom - (boomdis + 6), w20);
-  
-  strip.show();
-  delay(wait);
-  
-  for(int i = 0; i < strip.numPixels(); i++) {
-    strip.setPixelColor(i, 0);
-  }
-  strip.show();
-  
-  randomfizzle(r, g, b, false, boom);
-  
-}
-
 void randomfizzle(int r , int g, int b, boolean israndom, int getboom) {
   
   int boom = 0; //boom = 2 * (strip.numPixels() / 3);
@@ -556,7 +323,15 @@ void randomfizzle(int r , int g, int b, boolean israndom, int getboom) {
     boomdis = 10;
   }
   else if(israndom == true) {
-    boom = random((strip.numPixels() / 6), (5 * (strip.numPixels() / 6)));
+    int side = random(0, 2);
+    if(side == 0) {
+      //boom = random((strip.numPixels() / 2) / 3, (2 * (strip.numPixels() / 2)) / 3);
+      boom = random(6, 12);
+    }
+    else {
+      //boom = random(((strip.numPixels() / 2) / 3) + ((strip.numPixels() / 2) / 6), strip.numPixels() - (strip.numPixels() / 2) / 6);
+      boom = random(24, 30);
+    }
     boomdis = 0;
   }
   

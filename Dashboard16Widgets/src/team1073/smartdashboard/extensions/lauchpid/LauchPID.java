@@ -16,14 +16,14 @@ import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class LauchPID extends StaticWidget {
+public class LauchPID extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
     
-    public static final DataType[] TYPES = {DataType.NUMBER};
+    public static final DataType[] TYPES = {DataType.BOOLEAN};
     public static final String NAME = "LauchPID";
-    private int value = -1;
+    private boolean value = false;
     public final MultiProperty mode = new MultiProperty(this, "LauchPID");
     boolean isPID = false;
     
@@ -36,9 +36,10 @@ public class LauchPID extends StaticWidget {
     }
     
     // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
-        this.value = ((Number) o).intValue();
+        this.value = ((Boolean) o);
+        isPID = value;
         repaint();
     }
 
@@ -63,17 +64,10 @@ public class LauchPID extends StaticWidget {
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
         
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
-        
         //establish default colors
         Color c1 = new Color(0, 0, 0);    //a color
-        //GradientPaint gp = new GradientPaint(0, 0, c2, size.width/2, 0, c3);
-        String num = ""+value;
+        //GradientPaint gp = new GradientPaint(0, 0, c2, size.width/2, 0, c3);        
         
-        //g2.setPaint(gp);
-        //g2.fill(new Rectangle2D.Double(0, 0, size.width, size.height));
         g2.setPaint(c1);
         g2.setFont(new Font("Default", Font.BOLD, 18));
         g2.drawString("Laucher PID:  " + isPID, 0, size.height - 1);

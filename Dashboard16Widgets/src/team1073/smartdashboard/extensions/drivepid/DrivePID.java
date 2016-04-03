@@ -16,14 +16,14 @@ import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class DrivePID extends StaticWidget {
+public class DrivePID extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
     
-    public static final DataType[] TYPES = {DataType.NUMBER};
+    public static final DataType[] TYPES = {DataType.BOOLEAN};
     public static final String NAME = "DrivePID";
-    private int value = -1;
+    private boolean value = true;
     public final MultiProperty mode = new MultiProperty(this, "DrivePID");
     boolean isPID = false;
     
@@ -36,9 +36,10 @@ public class DrivePID extends StaticWidget {
     }
     
     // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
-        this.value = ((Number) o).intValue();
+        this.value = ((Boolean) o);
+        isPID = value;
         repaint();
     }
 
@@ -62,10 +63,6 @@ public class DrivePID extends StaticWidget {
         //allows g2.drawings to scale if(x&yvalues == %%)
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
         
         //establish default colors
         Color c1 = new Color(0, 0, 0);    //a color

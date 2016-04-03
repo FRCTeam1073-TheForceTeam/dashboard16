@@ -16,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class DefenseManipulatorAngle extends StaticWidget {
+public class DefenseManipulatorAngle extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
@@ -36,9 +36,10 @@ public class DefenseManipulatorAngle extends StaticWidget {
     }
     
     // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
+        defAngle = value;
         repaint();
     }
 
@@ -62,10 +63,6 @@ public class DefenseManipulatorAngle extends StaticWidget {
         //allows g2.drawings to scale if(x&yvalues == %%)
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
         
         //establish default colors
         Color c1 = new Color(0, 0, 0);    //a color

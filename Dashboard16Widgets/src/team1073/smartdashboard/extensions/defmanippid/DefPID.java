@@ -16,14 +16,14 @@ import java.awt.geom.Rectangle2D;
 
 // "extends Widget" is super-duper important
 // "extends StaticWidget" is for non-robot testing, "extends Widget" is for testing with the robot
-public class DefPID extends StaticWidget {
+public class DefPID extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
     
-    public static final DataType[] TYPES = {DataType.NUMBER};
+    public static final DataType[] TYPES = {DataType.BOOLEAN};
     public static final String NAME = "DefPID";
-    private int value = -1;
+    private boolean value = false;
     public final MultiProperty mode = new MultiProperty(this, "DefPID");
     boolean isPID = false;
     
@@ -36,9 +36,10 @@ public class DefPID extends StaticWidget {
     }
     
     // "//////////@Override" is for non-robot testing, "@Override" is for testing with the robot
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
-        this.value = ((Number) o).intValue();
+        this.value = ((Boolean) o);
+        isPID = value;
         repaint();
     }
 
@@ -63,10 +64,6 @@ public class DefPID extends StaticWidget {
         double xtotal = size.getWidth();
         double ytotal = size.getHeight();
         
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
-        
         //establish default colors
         Color c1 = new Color(0, 0, 0);    //a color
         //GradientPaint gp = new GradientPaint(0, 0, c2, size.width/2, 0, c3);
@@ -77,19 +74,6 @@ public class DefPID extends StaticWidget {
         g2.setPaint(c1);
         g2.setFont(new Font("Default", Font.BOLD, 18));
         g2.drawString("Defense Manipulator PID:  " + isPID, 0, size.height - 1);
-        
-        //g2.drawString(num, 0, size.height-1);
-        //g2.setFont(new Font ("default", Font.BOLD, 12));
-        //g2.drawString("totes", 60, size.height-1);
-        
-        
-        
-    }
-    private void drawStuff(Graphics2D g2) {
-        
-        Dimension size = getSize();
-        double xtotal = size.getWidth();
-        double ytotal = size.getHeight();
         
     }
     

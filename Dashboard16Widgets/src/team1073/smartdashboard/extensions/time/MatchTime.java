@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.tables.ITable;
 import java.awt.*;
 
 //"extends Widget" is super-duper important
-public class MatchTime extends StaticWidget {
+public class MatchTime extends Widget {
     
     //cd C:\Program Files\SmartDashboard
     //java -jar SmartDashboard.jar
@@ -24,9 +24,9 @@ public class MatchTime extends StaticWidget {
     public static final String NAME = "Time";
     private int value = -1;
     public final MultiProperty mode = new MultiProperty(this, "Match Time");
-
-    ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
-    int matchTime = 150 - (int)(table.getNumber("matchTime", 0.0));
+    int matchTime = 0;
+    /*ITable table = edu.wpi.first.smartdashboard.robot.Robot.getTable();
+    int matchTime = 150 - (int)(table.getNumber("matchTime", 0.0));*/
     
     
     public MatchTime() {
@@ -37,9 +37,10 @@ public class MatchTime extends StaticWidget {
         
     }
     
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
+        matchTime = value;
         repaint();
     }
 
@@ -72,10 +73,6 @@ public class MatchTime extends StaticWidget {
         //getTime(0, g2);
         getTime(matchTime, g2);        // green
         //getTime(135, g2);     // red
-        
-        if(value == 0) {
-            //mode.add("nothing!", 0);
-        }
         
     }
     

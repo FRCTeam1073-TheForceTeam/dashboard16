@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.geom.*;
 
 //"extends Widget" is super-duper important
-public class Battery extends StaticWidget {
+public class Battery extends Widget {
     
     public static final DataType[] TYPES = {DataType.NUMBER};
     public static final String NAME = "Battery";
@@ -29,9 +29,10 @@ public class Battery extends StaticWidget {
         /*This constructor is only necessary for testing purposes*/
     }
     
-    ////////////@Override
+    @Override
     public void setValue(Object o) {
         this.value = ((Number) o).intValue();
+        batPer = value;
         repaint();
     }
 
